@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour {
 
     public Hex activeHex;
     public GameObject debugUnitGO;
+    public GameObject debugUnitGO2;
 
-#region Singleton
+    #region Singleton
     static public PlayerController instance;
 
     private void Awake()
@@ -65,8 +66,14 @@ public class PlayerController : MonoBehaviour {
         if (_hex.unit == null)
         {
             _hex.SetUnit(Instantiate(debugUnitGO, _hex.transform).GetComponent<Unit>());
-
         }
-        
+    }
+
+    public void CreateDebugUnitOnHex(Hex _hex, GameObject _unitGO)
+    {
+        if (_hex.unit == null)
+        {
+            _hex.SetUnit(Instantiate(_unitGO, _hex.transform).GetComponent<Unit>());
+        }
     }
 }

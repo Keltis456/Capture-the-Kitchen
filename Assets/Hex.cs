@@ -45,6 +45,10 @@ public class Hex : MonoBehaviour {
         {
             PlayerController.instance.CreateDebugUnitOnHex(this);
         }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            PlayerController.instance.CreateDebugUnitOnHex(this, PlayerController.instance.debugUnitGO2);
+        }
     }
 
     private void OnMouseDown()
