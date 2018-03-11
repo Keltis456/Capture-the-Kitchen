@@ -8,7 +8,6 @@ public class MapAssembler : MonoBehaviour {
     public Vector2 sizeOfMap = new Vector2(1,1);
     Vector2 startPos;
     
-
 	void Start () {
         startPos = transform.position;
         
