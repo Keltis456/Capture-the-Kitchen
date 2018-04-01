@@ -89,8 +89,9 @@ public class Hex : MonoBehaviour {
     {
         if (unit != null)
         {
-            unit.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+            unit.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
             unit.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
+            unit.gameObject.GetComponent<Animation>().Play("Unit_Idle");
             Debug.Log(Camera.main.transform.eulerAngles.x + ", " + Camera.main.transform.eulerAngles.y + ", " + Camera.main.transform.eulerAngles.z);
         }
     }
