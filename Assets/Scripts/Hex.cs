@@ -94,6 +94,11 @@ public class Hex : MonoBehaviour {
             unit.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
             unit.gameObject.GetComponent<Animation>().Play("Unit_Idle");
             //Debug.Log(Camera.main.transform.eulerAngles.x + ", " + Camera.main.transform.eulerAngles.y + ", " + Camera.main.transform.eulerAngles.z);
+            Debug.Log(unit.GetAvalibleMoves(this).ToArray().ToString());
+            foreach (Hex item in unit.GetAvalibleMoves(this))
+            {
+                Debug.Log(item.posAtMap);
+            }
         }
     }
 
