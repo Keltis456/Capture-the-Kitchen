@@ -5,16 +5,19 @@ using UnityEngine;
 public class Unit : MonoBehaviour {
 
     public bool isAbleToMove = false;
-    public int currAbleSteps = 1;
+    int currAbleSteps = 2;
     public int maxAbleSteps = 0;
 
     public List<Hex> avalibleHices = new List<Hex>();
-
+    
     public List<Hex> GetAvalibleMoves(Hex hex)
     {
         if (hex != null)
         {
-            return GetAvalibleHices(hex, currAbleSteps);
+            avalibleHices.Clear();
+            var temp = GetAvalibleHices(hex, currAbleSteps);
+            temp.Remove(hex);
+            return temp;
         }
         return null;
     }
@@ -33,81 +36,48 @@ public class Unit : MonoBehaviour {
 
                 tmpX = (int)hex.posAtMap.x + 1;
                 tmpY = (int)hex.posAtMap.y;
-                if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
-                {
-                    tmpHex = Map.instance.hices[tmpX, tmpY];
-                    if (!avalibleHices.Contains(tmpHex))
-                    {
-                        avalibleHices.Add(tmpHex);
-                        GetAvalibleHices(tmpHex, _currAbleSteps);
-                    }
-                }
+                CheckHex(tmpX, tmpY, _currAbleSteps);
 
                 tmpX = (int)hex.posAtMap.x - 1;
                 tmpY = (int)hex.posAtMap.y;
-                if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
-                {
-                    tmpHex = Map.instance.hices[tmpX, tmpY];
-                    if (!avalibleHices.Contains(tmpHex))
-                    {
-                        avalibleHices.Add(tmpHex);
-                        GetAvalibleHices(tmpHex, _currAbleSteps);
-                    }
-                }
+                CheckHex(tmpX, tmpY, _currAbleSteps);
 
                 tmpX = (int)hex.posAtMap.x + 1;
                 tmpY = (int)hex.posAtMap.y + 1;
-                if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
-                {
-                    tmpHex = Map.instance.hices[tmpX, tmpY];
-                    if (!avalibleHices.Contains(tmpHex))
-                    {
-                        avalibleHices.Add(tmpHex);
-                        GetAvalibleHices(tmpHex, _currAbleSteps);
-                    }
-                }
+                CheckHex(tmpX, tmpY, _currAbleSteps);
 
                 tmpX = (int)hex.posAtMap.x - 1;
                 tmpY = (int)hex.posAtMap.y - 1;
-                if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
-                {
-                    tmpHex = Map.instance.hices[tmpX, tmpY];
-                    if (!avalibleHices.Contains(tmpHex))
-                    {
-                        avalibleHices.Add(tmpHex);
-                        GetAvalibleHices(tmpHex, _currAbleSteps);
-                    }
-                }
+                CheckHex(tmpX, tmpY, _currAbleSteps);
 
                 tmpX = (int)hex.posAtMap.x;
                 tmpY = (int)hex.posAtMap.y + 1;
-                if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
-                {
-                    tmpHex = Map.instance.hices[tmpX, tmpY];
-                    if (!avalibleHices.Contains(tmpHex))
-                    {
-                        avalibleHices.Add(tmpHex);
-                        GetAvalibleHices(tmpHex, _currAbleSteps);
-                    }
-                }
+                CheckHex(tmpX, tmpY, _currAbleSteps);
 
                 tmpX = (int)hex.posAtMap.x;
                 tmpY = (int)hex.posAtMap.y - 1;
-                if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
-                {
-                    tmpHex = Map.instance.hices[tmpX, tmpY];
-                    if (!avalibleHices.Contains(tmpHex))
-                    {
-                        avalibleHices.Add(tmpHex);
-                        GetAvalibleHices(tmpHex, _currAbleSteps);
-                    }
-                }
+                CheckHex(tmpX, tmpY, _currAbleSteps);
             }
             else
             {
                 return avalibleHices;
             }
         }
-        return null;
+        return avalibleHices;
+    }
+
+    void CheckHex(int tmpX, int tmpY, int _currAbleSteps)
+    {
+        if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
+        {
+            Hex tmpHex;
+            tmpHex = Map.instance.hices[tmpX, tmpY];
+            if (!avalibleHices.Contains(tmpHex))
+            {
+                avalibleHices.Add(tmpHex);
+                
+            }
+            GetAvalibleHices(tmpHex, _currAbleSteps);
+        }
     }
 }

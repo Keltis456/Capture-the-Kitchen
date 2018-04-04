@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour {
     {
         if (activeHex == _hex)
         {
+            if (activeHex.unit != null)
+            {
+                activeHex.HideAvalibleHicesForMove();
+            }
             activeHex.ChangeColor();
             activeHex = null;
             return;
@@ -28,10 +32,23 @@ public class PlayerController : MonoBehaviour {
 
         if (activeHex != null)
         {
+            if (activeHex.unit != null)
+            {
+                activeHex.HideAvalibleHicesForMove();
+            }
             activeHex.ChangeColor();
         }
-        _hex.ChangeColor();
+
         activeHex = _hex;
+
+        if (activeHex != null)
+        {
+            if (activeHex.unit != null)
+            {
+                activeHex.ShowAvalibleHicesForMove();
+            }
+            activeHex.ChangeColor();
+        }
     }
 
     public void InteractWithHex(Hex _hex)
@@ -41,6 +58,7 @@ public class PlayerController : MonoBehaviour {
         if (activeHex == _hex)
         {
             activeHex.ChangeColor();
+            activeHex.HideAvalibleHicesForMove();
             activeHex = null;
             return;
         }
@@ -52,12 +70,15 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
+        activeHex.HideAvalibleHicesForMove();
+        activeHex.ChangeColor();
         if (!activeHex.MoveUnitTo(_hex))
         {
             Debug.Log("Cant move unit to occupied hex!");
         }
 
-        activeHex.ChangeColor();
+        
+        
         activeHex = null;
     }
 

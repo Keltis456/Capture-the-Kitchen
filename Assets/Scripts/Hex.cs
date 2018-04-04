@@ -9,9 +9,12 @@ public class Hex : MonoBehaviour {
     Color defaultColor;
     Color currColor;
 
+    bool isAvalibleForUnitMove;
+
     public Unit unit; //{ get; private set; }
     public Color onMouseEnterColor = Color.HSVToRGB(0, 0.5f, 1);
     public Color onMouseDownColor = Color.HSVToRGB(0, 1, 1);
+    public Color avalibleForUnitMoveColor = Color.HSVToRGB(1, 1, 1);
     public Vector2 posAtMap = new Vector2(0, 0);
 
     #region UnityMethods
@@ -57,23 +60,24 @@ public class Hex : MonoBehaviour {
         PlayerController.instance.SetActiveHex(this);
     }
 
-    
-
     #endregion
 
     #region PublicCustomMethods
 
     public void ChangeColor()
     {
-        if (currColor != defaultColor)
+        if (!isAvalibleForUnitMove)
         {
-            currColor = defaultColor;
-            cellRenderer.color = currColor;
-        }
-        else
-        {
-            currColor = onMouseDownColor;
-            cellRenderer.color = currColor;
+            if (currColor != defaultColor)
+            {
+                currColor = defaultColor;
+                cellRenderer.color = currColor;
+            }
+            else
+            {
+                currColor = onMouseDownColor;
+                cellRenderer.color = currColor;
+            }
         }
     }
 
@@ -94,11 +98,42 @@ public class Hex : MonoBehaviour {
             unit.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
             unit.gameObject.GetComponent<Animation>().Play("Unit_Idle");
             //Debug.Log(Camera.main.transform.eulerAngles.x + ", " + Camera.main.transform.eulerAngles.y + ", " + Camera.main.transform.eulerAngles.z);
-            Debug.Log(unit.GetAvalibleMoves(this).ToArray().ToString());
-            foreach (Hex item in unit.GetAvalibleMoves(this))
-            {
-                Debug.Log(item.posAtMap);
-            }
+            
+        }
+    }
+
+    public void ShowAvalibleHicesForMove()
+    {
+        if (unit == null) return;
+        foreach (Hex item in unit.GetAvalibleMoves(this))
+        {
+            item.SwitchAvalibleForUnitMove();
+        }
+
+    }
+
+    public void HideAvalibleHicesForMove()
+    {
+        if (unit == null) return;
+        foreach (Hex item in unit.avalibleHices)
+        {
+            item.SwitchAvalibleForUnitMove();
+        }
+    }
+
+    public void SwitchAvalibleForUnitMove()
+    {
+        if (!isAvalibleForUnitMove)
+        {
+            isAvalibleForUnitMove = true;
+            currColor = avalibleForUnitMoveColor;
+            cellRenderer.color = currColor;
+        }
+        else
+        {
+            isAvalibleForUnitMove = false;
+            currColor = defaultColor;
+            cellRenderer.color = currColor;
         }
     }
 
