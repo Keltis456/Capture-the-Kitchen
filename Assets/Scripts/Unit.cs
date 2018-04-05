@@ -30,7 +30,7 @@ public class Unit : MonoBehaviour {
             {
                 _currAbleSteps--;
 
-                Hex tmpHex;
+                //Hex tmpHex;
                 int tmpX;
                 int tmpY;
 
@@ -72,12 +72,14 @@ public class Unit : MonoBehaviour {
         {
             Hex tmpHex;
             tmpHex = Map.instance.hices[tmpX, tmpY];
-            if (!avalibleHices.Contains(tmpHex))
+            if (tmpHex.unit == null)
             {
-                avalibleHices.Add(tmpHex);
-                
+                if (!avalibleHices.Contains(tmpHex))
+                {
+                    avalibleHices.Add(tmpHex);
+                }
+                GetAvalibleHices(tmpHex, _currAbleSteps);
             }
-            GetAvalibleHices(tmpHex, _currAbleSteps);
         }
     }
 }

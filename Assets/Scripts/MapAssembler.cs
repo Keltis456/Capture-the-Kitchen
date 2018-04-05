@@ -21,7 +21,7 @@ public class MapAssembler : MonoBehaviour {
                 hex.transform.SetParent(Map.instance.transform);
             }
         }
-        Map.instance.DebugMap();
+        //Map.instance.DebugMap();
         
     }
 }

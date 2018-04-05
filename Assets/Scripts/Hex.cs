@@ -139,7 +139,7 @@ public class Hex : MonoBehaviour {
 
     public bool MoveUnitTo(Hex _hex)
     {
-        if (_hex.unit == null)
+        if (_hex.unit == null && unit.avalibleHices.Contains(_hex))
         {
             _hex.SetUnit(unit);
             unit = null;

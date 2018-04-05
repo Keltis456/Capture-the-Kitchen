@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         activeHex.ChangeColor();
         if (!activeHex.MoveUnitTo(_hex))
         {
-            Debug.Log("Cant move unit to occupied hex!");
+            Debug.Log("Cant move unit!");
         }
 
         
