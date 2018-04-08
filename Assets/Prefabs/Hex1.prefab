@@ -184,8 +184,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365fa92bd1caeb64ca0072132c6203bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 0}
   onMouseEnterColor: {r: 1, g: 0.5, b: 0.5, a: 1}
   onMouseDownColor: {r: 1, g: 0, b: 0, a: 1}
+  avalibleForUnitMoveColor: {r: 0, g: 1, b: 1, a: 1}
+  posAtMap: {x: 0, y: 0}
 --- !u!212 &212147036602402302
 SpriteRenderer:
   m_ObjectHideFlags: 1

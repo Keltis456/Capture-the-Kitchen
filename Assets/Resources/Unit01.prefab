@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4993651855342726}
   - component: {fileID: 114618116853528174}
+  - component: {fileID: 111603093762122794}
   m_Layer: 0
   m_Name: Unit01
   m_TagString: Untagged
@@ -99,6 +100,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &111603093762122794
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178427513090926}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: cb2af878e44eb2b4d97b6ff97671b372, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: cb2af878e44eb2b4d97b6ff97671b372, type: 2}
+  m_WrapMode: 2
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114618116853528174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc5db2fc686857468cbeb9fbe9e77b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAbleToMove: 0
+  currAbleSteps: 2
+  maxAbleSteps: 2
 --- !u!212 &212328883960659962
 SpriteRenderer:
   m_ObjectHideFlags: 1

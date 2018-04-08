@@ -5,13 +5,16 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     Vector2 mouseDragStartPos;
+
+    public float minCamSize = 5;
+    public float maxCamSize = 20;
     
 	void Update () {
         if (Input.mouseScrollDelta.y != 0)
         {
             if (Camera.main.orthographicSize - Input.mouseScrollDelta.y > 0)
             {
-                Camera.main.orthographicSize -= Input.mouseScrollDelta.y;
+                Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - Input.mouseScrollDelta.y, minCamSize, maxCamSize);
             }
         }
 
