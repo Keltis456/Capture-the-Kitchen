@@ -5,32 +5,31 @@ using UnityEngine;
 public class Unit : MonoBehaviour {
 
     public bool isAbleToMove = false;
-    int currAbleSteps = 2;
-    public int maxAbleSteps = 0;
+    public int currAbleSteps = 2;
+    public int maxAbleSteps = 2;
 
-    public List<Hex> avalibleHices = new List<Hex>();
-    
-    public List<Hex> GetAvalibleMoves(Hex hex)
+    public MoveList avalibleHices = new MoveList();
+
+    public MoveList GetAvalibleMoves(Hex hex)
     {
         if (hex != null)
         {
             avalibleHices.Clear();
             var temp = GetAvalibleHices(hex, currAbleSteps);
-            temp.Remove(hex);
+            temp.RemoveByHex(hex);
             return temp;
         }
         return null;
     }
 
-    List<Hex> GetAvalibleHices(Hex hex, int _currAbleSteps)
+    MoveList GetAvalibleHices(Hex hex, int _currAbleSteps)
     {
         if (hex != null)
         {
             if (_currAbleSteps > 0)
             {
                 _currAbleSteps--;
-
-                //Hex tmpHex;
+                
                 int tmpX;
                 int tmpY;
 
@@ -74,9 +73,10 @@ public class Unit : MonoBehaviour {
             tmpHex = Map.instance.hices[tmpX, tmpY];
             if (tmpHex.unit == null)
             {
-                if (!avalibleHices.Contains(tmpHex))
+                if (avalibleHices.FindByHex(tmpHex) == null || avalibleHices.FindByHex(tmpHex).price > currAbleSteps - _currAbleSteps)
                 {
-                    avalibleHices.Add(tmpHex);
+                    avalibleHices.RemoveByHex(tmpHex);
+                    avalibleHices.Add(new Move(tmpHex, currAbleSteps - _currAbleSteps));
                 }
                 GetAvalibleHices(tmpHex, _currAbleSteps);
             }

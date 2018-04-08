@@ -9,7 +9,7 @@ public class Hex : MonoBehaviour {
     Color defaultColor;
     Color currColor;
 
-    bool isAvalibleForUnitMove;
+    bool isHighlightedForUnitAvalibleMove;
 
     public Unit unit; //{ get; private set; }
     public Color onMouseEnterColor = Color.HSVToRGB(0, 0.5f, 1);
@@ -39,7 +39,7 @@ public class Hex : MonoBehaviour {
     private void OnMouseOver()
     {
         if(Input.GetMouseButtonDown(1)){
-            PlayerController.instance.InteractWithHex(this);
+            GameManager.instance.currActivePlayer.InteractWithHex(this);
         }
         if (Input.GetMouseButtonDown(3) || Input.GetKeyDown(KeyCode.D))
         {
@@ -47,17 +47,17 @@ public class Hex : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(4) || Input.GetKeyDown(KeyCode.C))
         {
-            PlayerController.instance.CreateDebugUnitOnHex(this);
+            GameManager.instance.currActivePlayer.CreateDebugUnitOnHex(this);
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
-            PlayerController.instance.CreateDebugUnitOnHex(this, PlayerController.instance.debugUnitGO2);
+            GameManager.instance.currActivePlayer.CreateDebugUnitOnHex(this, GameManager.instance.currActivePlayer.debugUnitGO2);
         }
     }
 
     private void OnMouseDown()
     {
-        PlayerController.instance.SetActiveHex(this);
+        GameManager.instance.currActivePlayer.SetActiveHex(this);
     }
 
     #endregion
@@ -66,7 +66,7 @@ public class Hex : MonoBehaviour {
 
     public void ChangeColor()
     {
-        if (!isAvalibleForUnitMove)
+        if (!isHighlightedForUnitAvalibleMove)
         {
             if (currColor != defaultColor)
             {
@@ -81,13 +81,14 @@ public class Hex : MonoBehaviour {
         }
     }
 
-    public void SetUnit(Unit _unit)
+    public Unit SetUnit(Unit _unit)
     {
         if (unit == null)
         {
             unit = _unit;
             UpdateUnit();
         }
+        return _unit;
     }
 
     public void UpdateUnit()
@@ -97,17 +98,15 @@ public class Hex : MonoBehaviour {
             unit.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
             unit.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
             unit.gameObject.GetComponent<Animation>().Play("Unit_Idle");
-            //Debug.Log(Camera.main.transform.eulerAngles.x + ", " + Camera.main.transform.eulerAngles.y + ", " + Camera.main.transform.eulerAngles.z);
-            
         }
     }
 
     public void ShowAvalibleHicesForMove()
     {
         if (unit == null) return;
-        foreach (Hex item in unit.GetAvalibleMoves(this))
+        foreach (var item in unit.GetAvalibleMoves(this).moves)
         {
-            item.SwitchAvalibleForUnitMove();
+            item.hex.SwitchAvalibleForUnitMove();
         }
 
     }
@@ -115,23 +114,23 @@ public class Hex : MonoBehaviour {
     public void HideAvalibleHicesForMove()
     {
         if (unit == null) return;
-        foreach (Hex item in unit.avalibleHices)
+        foreach (Move item in unit.avalibleHices.moves)
         {
-            item.SwitchAvalibleForUnitMove();
+            item.hex.SwitchAvalibleForUnitMove();
         }
     }
 
     public void SwitchAvalibleForUnitMove()
     {
-        if (!isAvalibleForUnitMove)
+        if (!isHighlightedForUnitAvalibleMove)
         {
-            isAvalibleForUnitMove = true;
+            isHighlightedForUnitAvalibleMove = true;
             currColor = avalibleForUnitMoveColor;
             cellRenderer.color = currColor;
         }
         else
         {
-            isAvalibleForUnitMove = false;
+            isHighlightedForUnitAvalibleMove = false;
             currColor = defaultColor;
             cellRenderer.color = currColor;
         }
@@ -139,8 +138,9 @@ public class Hex : MonoBehaviour {
 
     public bool MoveUnitTo(Hex _hex)
     {
-        if (_hex.unit == null && unit.avalibleHices.Contains(_hex))
+        if (_hex.unit == null && unit.avalibleHices.FindByHex(_hex) != null)
         {
+            unit.currAbleSteps -= unit.avalibleHices.FindByHex(_hex).price;
             _hex.SetUnit(unit);
             unit = null;
             return true;
@@ -150,8 +150,9 @@ public class Hex : MonoBehaviour {
 
     public void DestroyUnit()
     {
-        if (unit != null)
+        if (unit != null && GameManager.instance.currActivePlayer.units.Contains(unit))
         {
+            GameManager.instance.currActivePlayer.units.Remove(unit);
             Destroy(unit.gameObject);
             unit = null;
         }

@@ -7,18 +7,29 @@ public class PlayerController : MonoBehaviour {
     public Hex activeHex;
     public GameObject debugUnitGO;
     public GameObject debugUnitGO2;
+    public List<Unit> units = new List<Unit>();
 
-    #region Singleton
-    static public PlayerController instance;
-
-    private void Awake()
+    private void Start()
     {
-        if (instance == null) instance = this;
+        if (debugUnitGO == null)
+        {
+            debugUnitGO = (GameObject)Resources.Load("Unit01");
+            Debug.Log(debugUnitGO);
+        }
+        if (debugUnitGO2 == null)
+        {
+            debugUnitGO2 = (GameObject)Resources.Load("Unit02");
+            Debug.Log(debugUnitGO2);
+        }
     }
-#endregion
 
     public void SetActiveHex(Hex _hex)
     {
+        if (_hex == null)
+        {
+            return;
+        }
+
         if (activeHex == _hex)
         {
             if (activeHex.unit != null)
@@ -76,8 +87,6 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log("Cant move unit!");
         }
-
-        
         
         activeHex = null;
     }
@@ -86,7 +95,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (_hex.unit == null)
         {
-            _hex.SetUnit(Instantiate(debugUnitGO, _hex.transform).GetComponent<Unit>());
+            units.Add(_hex.SetUnit(Instantiate(debugUnitGO, _hex.transform).GetComponent<Unit>()));
         }
     }
 
@@ -94,7 +103,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (_hex.unit == null)
         {
-            _hex.SetUnit(Instantiate(_unitGO, _hex.transform).GetComponent<Unit>());
+            units.Add(_hex.SetUnit(Instantiate(_unitGO, _hex.transform).GetComponent<Unit>()));
         }
     }
 }
