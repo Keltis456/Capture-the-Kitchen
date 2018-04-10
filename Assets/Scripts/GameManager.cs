@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public List<PlayerController> players = new List<PlayerController>();
     public PlayerController currActivePlayer;
     public GameObject playerEthalon;
+    public Canvas canvas;
 
     #region Singleton
     public static GameManager instance;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour {
         {
             item.currAbleSteps = 0;
             //item.gameObject.GetComponent<Animation>().Play("Unit_Idle");
+            //item.gameObject.GetComponent<Animation>()["Unit_Idle"]
             item.gameObject.GetComponent<Animation>().Stop();
         }
         if (players.IndexOf(currActivePlayer) + 1 >= players.Count)

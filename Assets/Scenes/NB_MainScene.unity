@@ -358,8 +358,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 151062900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 636, y: 267.5, z: 0}
-  m_LocalScale: {x: 0.89166665, y: 0.89166665, z: 0.89166665}
+  m_LocalPosition: {x: 636, y: 290.5, z: 0}
+  m_LocalScale: {x: 0.9683333, y: 0.9683333, z: 0.9683333}
   m_Children:
   - {fileID: 1359534116}
   m_Father: {fileID: 0}
@@ -505,6 +505,7 @@ MonoBehaviour:
   currActivePlayer: {fileID: 0}
   playerEthalon: {fileID: 1781498262110740, guid: 84ca3ee3708daec49908c00f9759dac7,
     type: 2}
+  canvas: {fileID: 151062903}
 --- !u!1 &364655593
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +893,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1359534115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 613.27106, y: -200, z: 0}
+  m_LocalPosition: {x: 556.79865, y: -200, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2094305679}

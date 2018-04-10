@@ -1,14 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour {
-
-    public bool isAbleToMove = false;
+    
+    [HideInInspector]
     public int currAbleSteps = 2;
     public int maxAbleSteps = 2;
+    public int maxHP;
+    public int currHP;
+    public Text hpText;
 
     public MoveList avalibleHices = new MoveList();
+
+    private void Start()
+    {
+        hpText = Instantiate(hpText.gameObject, GameManager.instance.canvas.transform).GetComponent<Text>();
+        currHP = maxHP;
+        ShowUnitHealth();
+    }
+
+    private void OnGUI()
+    {
+        ShowUnitHealth();
+    }
 
     public MoveList GetAvalibleMoves(Hex hex)
     {
@@ -81,5 +97,12 @@ public class Unit : MonoBehaviour {
                 GetAvalibleHices(tmpHex, _currAbleSteps);
             }
         }
+    }
+
+    public void ShowUnitHealth()
+    {
+        hpText.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, 0));
+        hpText.transform.position = new Vector3(hpText.transform.position.x, hpText.transform.position.y, 0);
+        hpText.text = currHP.ToString();
     }
 }
