@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour {
     public int maxHP;
     public int currHP;
     public Text hpText;
-
+    public float tmpAnimNormTime;
     public MoveList avalibleHices = new MoveList();
 
     private void Start()
