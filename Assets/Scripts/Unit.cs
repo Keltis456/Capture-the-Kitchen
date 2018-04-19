@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Unit : MonoBehaviour {
-    
+
     [HideInInspector]
-    public int currAbleSteps = 2;
-    public int maxAbleSteps = 2;
+    public int currAbleSteps;
+    public int maxAbleSteps;
     public int maxHP;
     public int currHP;
     public Text hpText;
