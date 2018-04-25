@@ -547,8 +547,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c3d8ca848046542bb407e0f5f5ce8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexagonal_cell: {fileID: 1871577531115446, guid: ad1132e415c653841acb3ce2e4b89404,
-    type: 2}
+  cell_prefabs:
+  - {fileID: 1755504687386404, guid: 0f05114310e525543a0474d49c093e45, type: 2}
+  - {fileID: 1268767527116670, guid: 8f6f1b863947b4d44a3ec81039c518d7, type: 2}
+  - {fileID: 1362345219488290, guid: 2148e6a5d34741b4585ab915099a5924, type: 2}
+  - {fileID: 1036851770101862, guid: f776663df0a26444bb03ae7a6c1be524, type: 2}
+  - {fileID: 1097997270105292, guid: f857cb1692a1e1143b07668aad5d49f6, type: 2}
+  - {fileID: 1091211844682072, guid: 495dc8dbd3e59f24bad1af99dd2772bc, type: 2}
   sizeOfMap: {x: 10, y: 10}
 --- !u!4 &657704854 stripped
 Transform:
