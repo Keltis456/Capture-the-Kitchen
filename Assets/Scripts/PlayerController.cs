@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (debugUnitGO == null)
         {
-            debugUnitGO = (GameObject)Resources.Load("Unit01");
+            debugUnitGO = (GameObject)Resources.Load("Unit02");
             Debug.Log(debugUnitGO);
         }
         if (debugUnitGO2 == null)

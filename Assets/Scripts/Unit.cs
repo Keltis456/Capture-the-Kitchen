@@ -16,14 +16,14 @@ public class Unit : MonoBehaviour {
 
     private void Start()
     {
-        hpText = Instantiate(hpText.gameObject, GameManager.instance.canvas.transform).GetComponent<Text>();
+        //hpText = Instantiate(hpText.gameObject, GameManager.instance.canvas.transform).GetComponent<Text>();
         currHP = maxHP;
-        ShowUnitHealth();
+        //ShowUnitHealth();
     }
 
     private void OnGUI()
     {
-        ShowUnitHealth();
+        //ShowUnitHealth();
     }
 
     public MoveList GetAvalibleMoves(Hex hex)

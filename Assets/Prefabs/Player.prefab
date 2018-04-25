@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeHex: {fileID: 0}
-  debugUnitGO: {fileID: 1178427513090926, guid: 8f9abc25032740d4ca409ace8503cc9f,
+  debugUnitGO: {fileID: 1448221379961092, guid: 2896d1eaa07bb284e97a6f0a1df1183e,
     type: 2}
-  debugUnitGO2: {fileID: 1691526424454450, guid: db49b445aa6807944935e5cf405545bb,
+  debugUnitGO2: {fileID: 1448221379961092, guid: 67bc58f793861084481c75a4a053f163,
     type: 2}
   units: []
