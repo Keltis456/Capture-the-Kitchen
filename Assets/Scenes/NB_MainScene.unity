@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 364655594}
   - component: {fileID: 364655595}
   m_Layer: 0
-  m_Name: MapAssembler
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

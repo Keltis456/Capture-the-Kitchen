@@ -99,10 +99,10 @@ public class Unit : MonoBehaviour
 
     void CheckHex(int tmpX, int tmpY, int _currAbleSteps)
     {
-        if (MapAssembler.instance.hices.GetLength(0) > tmpX && MapAssembler.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
+        if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
         {
             Hex tmpHex;
-            tmpHex = MapAssembler.instance.hices[tmpX, tmpY];
+            tmpHex = Map.instance.hices[tmpX, tmpY];
             if (tmpHex.unit == null)
             {
                 if (avalibleHices.FindByHex(tmpHex) == null || avalibleHices.FindByHex(tmpHex).price > currAbleSteps - _currAbleSteps)

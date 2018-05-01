@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapAssembler : MonoBehaviour {
+public class Map : MonoBehaviour {
 
     public Hex[,] hices;
 
@@ -14,7 +14,7 @@ public class MapAssembler : MonoBehaviour {
     string outputTmp = "";
 
     #region Singleton
-    public static MapAssembler instance;
+    public static Map instance;
 
     private void Awake()
     {
