@@ -2,28 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class Unit : MonoBehaviour {
+[Serializable]
+public class Unit : MonoBehaviour
+{
+    Text hpText;
+    [NonSerialized]
+    public float tmpAnimNormTime;
+    [NonSerialized]
+    public MoveList avalibleHices = new MoveList();
     
+    #region Serializable
+
+    public string unitName;
     [HideInInspector]
     public int currAbleSteps = 2;
     public int maxAbleSteps = 2;
-    public int maxHP;
-    public int currHP;
-    public Text hpText;
-    public float tmpAnimNormTime;
-    public MoveList avalibleHices = new MoveList();
+    [SerializeField]
+    int maxHP;
+    [SerializeField]
+    int currHP;
+
+    #endregion
 
     private void Start()
     {
         //hpText = Instantiate(hpText.gameObject, GameManager.instance.canvas.transform).GetComponent<Text>();
         currHP = maxHP;
         //ShowUnitHealth();
-    }
 
-    private void OnGUI()
-    {
-        //ShowUnitHealth();
+        if (unitName != null && unitName != "")
+        {
+            gameObject.name = unitName;
+        }
+        else
+        {
+            unitName = gameObject.name;
+        }
     }
 
     public MoveList GetAvalibleMoves(Hex hex)
@@ -83,10 +99,10 @@ public class Unit : MonoBehaviour {
 
     void CheckHex(int tmpX, int tmpY, int _currAbleSteps)
     {
-        if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
+        if (MapAssembler.instance.hices.GetLength(0) > tmpX && MapAssembler.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
         {
             Hex tmpHex;
-            tmpHex = Map.instance.hices[tmpX, tmpY];
+            tmpHex = MapAssembler.instance.hices[tmpX, tmpY];
             if (tmpHex.unit == null)
             {
                 if (avalibleHices.FindByHex(tmpHex) == null || avalibleHices.FindByHex(tmpHex).price > currAbleSteps - _currAbleSteps)

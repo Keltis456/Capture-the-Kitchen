@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public GameObject playerEthalon;
     public Canvas canvas;
 
+    GameObject[] unitsPrefabsArray;
+    public Dictionary<string, GameObject> unitsPrefabs;
     
 
     #region Singleton
@@ -22,6 +24,16 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
+        //Загрузка префабов для юнитов
+        unitsPrefabsArray = Resources.LoadAll<GameObject>("Units");
+        unitsPrefabs = new Dictionary<string, GameObject>();
+        foreach (var item in unitsPrefabsArray)
+        {
+            unitsPrefabs.Add(item.name, item);
+        }
+        Debug.Log(unitsPrefabs);
+        
+
         players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
         players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
         currActivePlayer = players[0];

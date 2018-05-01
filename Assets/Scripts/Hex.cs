@@ -1,21 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Hex : MonoBehaviour {
-
+[Serializable]
+public class Hex : MonoBehaviour, ISerializationCallbackReceiver
+{
     SpriteRenderer cellRenderer;
     GameObject graphics;
     Color defaultColor;
     Color currColor;
 
-    bool isHighlightedForUnitAvalibleMove;
+    bool isApplicationisPlaying;
 
-    public Unit unit; //{ get; private set; }
-    public Color onMouseEnterColor = Color.HSVToRGB(0, 0.5f, 1);
-    public Color onMouseDownColor = Color.HSVToRGB(0, 1, 1);
-    public Color avalibleForUnitMoveColor = Color.HSVToRGB(1, 1, 1);
+    bool isHighlightedForUnitAvalibleMove;
+    
+    Color onMouseEnterColor = Color.HSVToRGB(0, 0.5f, 1);
+    Color onMouseDownColor = Color.HSVToRGB(0, 1, 1);
+    Color avalibleForUnitMoveColor = Color.HSVToRGB(1, 1, 1);
+    
+    [NonSerialized]
+    public Unit unit;
+
+    #region Serializable
+
+    public string hexName;
     public Vector2 posAtMap = new Vector2(0, 0);
+    [SerializeField]
+    string unitJson;
+
+    #endregion
 
     #region UnityMethods
 
@@ -24,6 +38,17 @@ public class Hex : MonoBehaviour {
         cellRenderer = graphics.GetComponentInChildren<SpriteRenderer>();
         defaultColor = cellRenderer.color;
         currColor = defaultColor;
+
+        isApplicationisPlaying = Application.isPlaying;
+
+        if (hexName != null && hexName != "")
+        {
+            gameObject.name = hexName;
+        }
+        else
+        {
+            hexName = gameObject.name;
+        }
 	}
 
     private void OnMouseEnter()
@@ -98,7 +123,7 @@ public class Hex : MonoBehaviour {
             unit.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             unit.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
             unit.gameObject.GetComponent<Animation>().Play("Unit_Idle");
-            unit.ShowUnitHealth();
+            //unit.ShowUnitHealth();
         }
     }
 
@@ -160,4 +185,31 @@ public class Hex : MonoBehaviour {
     }
 
     #endregion
+
+    #region ISerializationCallbackReceiver
+    public void OnBeforeSerialize()
+    {
+        if (unit != null)
+        {
+            unitJson = JsonUtility.ToJson(unit);
+        }
+        else
+        {
+            unitJson = null;
+        }
+        
+    }
+
+    public void OnAfterDeserialize()
+    {
+        unit = JsonUtility.FromJson<Unit>(unitJson);
+        if (isApplicationisPlaying)
+        {
+            //Создание юнита на клетке из префаба, который хранится в гм
+            unit = Instantiate(GameManager.instance.unitsPrefabs[unit.unitName], transform).GetComponent<Unit>();
+            UpdateUnit();
+        }
+    }
+    #endregion
+
 }

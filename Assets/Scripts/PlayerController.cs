@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour {
     {
         if (debugUnitGO == null)
         {
-            debugUnitGO = (GameObject)Resources.Load("Unit02");
+            debugUnitGO = GameManager.instance.unitsPrefabs["Unit01"];
             Debug.Log(debugUnitGO);
         }
         if (debugUnitGO2 == null)
         {
-            debugUnitGO2 = (GameObject)Resources.Load("Unit02");
+            debugUnitGO2 = GameManager.instance.unitsPrefabs["Unit02"];
             Debug.Log(debugUnitGO2);
         }
     }

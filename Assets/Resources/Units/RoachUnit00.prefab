@@ -2121,12 +2121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc5db2fc686857468cbeb9fbe9e77b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: RoachUnit00
   currAbleSteps: 2
   maxAbleSteps: 2
   maxHP: 0
   currHP: 0
-  hpText: {fileID: 114219569727353622, guid: efbd76d4925ccf043bdf17d8df420f44, type: 2}
-  tmpAnimNormTime: 0
 --- !u!212 &212024676584734716
 SpriteRenderer:
   m_ObjectHideFlags: 1
