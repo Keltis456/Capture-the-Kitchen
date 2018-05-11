@@ -12,7 +12,8 @@ public class Unit : MonoBehaviour
     public float tmpAnimNormTime;
     [NonSerialized]
     public MoveList avalibleHices = new MoveList();
-    
+    Hex tmpHex;
+
     #region Serializable
 
     public string unitName;
@@ -99,10 +100,9 @@ public class Unit : MonoBehaviour
 
     void CheckHex(int tmpX, int tmpY, int _currAbleSteps)
     {
-        if (Map.instance.hices.GetLength(0) > tmpX && Map.instance.hices.GetLength(1) > tmpY && tmpX >= 0 && tmpY >= 0)
+        tmpHex = Map.instance.FindHexByPos(tmpX, tmpY);
+        if (tmpHex != null)
         {
-            Hex tmpHex;
-            tmpHex = Map.instance.hices[tmpX, tmpY];
             if (tmpHex.unit == null)
             {
                 if (avalibleHices.FindByHex(tmpHex) == null || avalibleHices.FindByHex(tmpHex).price > currAbleSteps - _currAbleSteps)
@@ -121,4 +121,23 @@ public class Unit : MonoBehaviour
         hpText.transform.position = new Vector3(hpText.transform.position.x, hpText.transform.position.y, 0);
         hpText.text = currHP.ToString();
     }
+
+    #region Serialization
+
+    public string Serialize()
+    {
+        return unitName + "/" + currAbleSteps + "/" + maxAbleSteps + "/" + maxHP + "/" + currHP;
+    }
+    
+    public void Deserialize(string[] vs)
+    {
+        unitName = vs[0];
+        currAbleSteps = int.Parse(vs[1]);
+        maxAbleSteps = int.Parse(vs[2]);
+        maxHP = int.Parse(vs[3]);
+        currHP = int.Parse(vs[4]);
+    }
+
+    #endregion
+
 }

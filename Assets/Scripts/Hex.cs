@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Hex : MonoBehaviour, ISerializationCallbackReceiver
+public class Hex : MonoBehaviour
 {
     SpriteRenderer cellRenderer;
     GameObject graphics;
@@ -22,12 +22,13 @@ public class Hex : MonoBehaviour, ISerializationCallbackReceiver
     [NonSerialized]
     public Unit unit;
 
+    Unit _unit;
+
     #region Serializable
 
     public string hexName;
     public Vector2 posAtMap = new Vector2(0, 0);
-    [SerializeField]
-    string unitJson;
+    string[] unitJson;
 
     #endregion
 
@@ -186,6 +187,37 @@ public class Hex : MonoBehaviour, ISerializationCallbackReceiver
 
     #endregion
 
+    #region Serialization
+
+    public string Serialize()
+    {
+        if (unit != null)
+        {
+            return hexName + "\\" + posAtMap.x + "\\" + posAtMap.y + "\\" + unit.Serialize();
+        }
+        else
+        {
+            return hexName + "\\" + posAtMap.x + "\\" + posAtMap.y + "\\" + "";
+        }
+    }
+
+    public void Deserialize(string[] vs)
+    {
+        hexName = vs[0];
+        posAtMap = new Vector2(int.Parse(vs[1]), int.Parse(vs[2]));
+        Debug.Log(vs[3]);
+        if (vs[3] != "" || vs[3] != null)
+        {
+            unitJson = vs[3].Split((char)47);
+            unit = Instantiate(GameManager.instance.unitsPrefabs[unitJson[0]]).GetComponent<Unit>();
+            unit.Deserialize(unitJson);
+            UpdateUnit();
+        }
+    }
+
+    #endregion
+
+    /*
     #region ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
@@ -202,14 +234,15 @@ public class Hex : MonoBehaviour, ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        unit = JsonUtility.FromJson<Unit>(unitJson);
+        _unit = JsonUtility.FromJson<Unit>(unitJson);
         if (isApplicationisPlaying)
         {
             //Создание юнита на клетке из префаба, который хранится в гм
-            unit = Instantiate(GameManager.instance.unitsPrefabs[unit.unitName], transform).GetComponent<Unit>();
+            unit = Instantiate(GameManager.instance.unitsPrefabs[_unit.unitName], transform).GetComponent<Unit>();
+            JsonUtility.FromJsonOverwrite(unitJson, unit);
             UpdateUnit();
         }
     }
     #endregion
-
+    */
 }

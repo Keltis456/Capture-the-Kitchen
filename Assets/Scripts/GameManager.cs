@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour {
 
     GameObject[] unitsPrefabsArray;
     public Dictionary<string, GameObject> unitsPrefabs;
-    
+
+    GameObject[] cellPrefabsArray;
+    public Dictionary<string, GameObject> cellPrefabs;
 
     #region Singleton
     public static GameManager instance;
@@ -25,14 +27,21 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         //Загрузка префабов для юнитов
-        unitsPrefabsArray = Resources.LoadAll<GameObject>("Units");
+        unitsPrefabsArray = Resources.LoadAll<GameObject>("Prefabs/Units");
         unitsPrefabs = new Dictionary<string, GameObject>();
         foreach (var item in unitsPrefabsArray)
         {
             unitsPrefabs.Add(item.name, item);
         }
-        Debug.Log(unitsPrefabs);
-        
+        //Debug.Log(unitsPrefabs);
+
+        //Загрузка префабов для клеток
+        cellPrefabsArray = Resources.LoadAll<GameObject>("Prefabs/Cells");
+        cellPrefabs = new Dictionary<string, GameObject>();
+        foreach (var item in cellPrefabsArray)
+        {
+            cellPrefabs.Add(item.name, item);
+        }
 
         players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
         players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
