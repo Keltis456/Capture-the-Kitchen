@@ -52,7 +52,7 @@ public class Map : MonoBehaviour {
     {
         foreach (Hex item in hices)
         {
-            if (item.posAtMap.x == posX || item.posAtMap.y == posY)
+            if (item.posAtMap.x == posX && item.posAtMap.y == posY)
             {
                 return item;
             }
@@ -82,7 +82,7 @@ public class Map : MonoBehaviour {
     */
     public void LoadMap()
     {
-        if (outputTmp != null || outputTmp != "")
+        if (outputTmp != null && outputTmp != "")
         {
             foreach (var item in hices)
             {
@@ -91,10 +91,14 @@ public class Map : MonoBehaviour {
             hices.Clear();
             foreach (string item in outputTmp.Split((char)124))
             {
-                Debug.Log(item);
-                cellJson = item.Split((char)92);
-                hices.Add(Instantiate(GameManager.instance.cellPrefabs[cellJson[0]], transform).GetComponent<Hex>());
-                hices[hices.Count].Deserialize(cellJson);
+                if (item != "" && item != null)
+                {
+                    Debug.Log(item);
+                    cellJson = item.Split((char)92);
+                    hices.Add(Instantiate(GameManager.instance.cellPrefabs[cellJson[0]], new Vector2(startPos.x + int.Parse(cellJson[2]) * 3.84f, startPos.y + int.Parse(cellJson[1]) * 4.43f - int.Parse(cellJson[2]) * 2.215f), Quaternion.identity).GetComponent<Hex>());
+                    hices[hices.Count - 1].Deserialize(cellJson);
+
+                }
             } 
         }
     }

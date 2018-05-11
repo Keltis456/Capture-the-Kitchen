@@ -122,6 +122,7 @@ public class Hex : MonoBehaviour
         if (unit != null)
         {
             unit.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            unit.transform.SetParent(transform);
             unit.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
             unit.gameObject.GetComponent<Animation>().Play("Unit_Idle");
             //unit.ShowUnitHealth();
@@ -197,7 +198,7 @@ public class Hex : MonoBehaviour
         }
         else
         {
-            return hexName + "\\" + posAtMap.x + "\\" + posAtMap.y + "\\" + "";
+            return hexName + "\\" + posAtMap.x + "\\" + posAtMap.y;
         }
     }
 
@@ -205,13 +206,16 @@ public class Hex : MonoBehaviour
     {
         hexName = vs[0];
         posAtMap = new Vector2(int.Parse(vs[1]), int.Parse(vs[2]));
-        Debug.Log(vs[3]);
-        if (vs[3] != "" || vs[3] != null)
+        if (vs.Length >= 4)
         {
-            unitJson = vs[3].Split((char)47);
-            unit = Instantiate(GameManager.instance.unitsPrefabs[unitJson[0]]).GetComponent<Unit>();
-            unit.Deserialize(unitJson);
-            UpdateUnit();
+            if (vs[3] != "" && vs[3] != null && vs[3] != " " && vs[3] != "/n")
+            {
+                unitJson = vs[3].Split((char)47);
+                Debug.Log(unitJson[0]);
+                unit = Instantiate(GameManager.instance.unitsPrefabs[unitJson[0]]).GetComponent<Unit>();
+                unit.Deserialize(unitJson);
+                UpdateUnit();
+            }
         }
     }
 
