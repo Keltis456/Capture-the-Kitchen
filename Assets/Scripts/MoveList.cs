@@ -45,3 +45,15 @@ public class MoveList {
         }
     }
 }
+
+public struct AvalibleActions
+{
+    public MoveList moveList;
+    public MoveList enemyList;
+
+    public AvalibleActions(MoveList _moveList, MoveList _enemyList) : this()
+    {
+        moveList = _moveList;
+        enemyList = _enemyList;
+    }
+}

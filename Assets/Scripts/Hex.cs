@@ -14,14 +14,21 @@ public class Hex : MonoBehaviour
     bool isApplicationisPlaying;
 
     bool isHighlightedForUnitAvalibleMove;
-    
+    bool isHighlightedForUnitAvalibleAttack;
+
+    [SerializeField]
     Color onMouseEnterColor = Color.HSVToRGB(0, 0.5f, 1);
+    [SerializeField]
     Color onMouseDownColor = Color.HSVToRGB(0, 1, 1);
+    [SerializeField]
     Color avalibleForUnitMoveColor = Color.HSVToRGB(1, 1, 1);
-    
+    [SerializeField]
+    Color avalibleForUnitAttackColor = Color.HSVToRGB(1, 1, 1);
+
+
     [NonSerialized]
     public Unit unit;
-
+    AvalibleActions avalibleActions;
     Unit _unit;
 
     #region Serializable
@@ -132,9 +139,14 @@ public class Hex : MonoBehaviour
     public void ShowAvalibleHicesForMove()
     {
         if (unit == null) return;
-        foreach (var item in unit.GetAvalibleMoves(this).moves)
+        avalibleActions = unit.GetAvalibleMoves(this);
+        foreach (var item in avalibleActions.moveList.moves)
         {
             item.hex.SwitchAvalibleForUnitMove();
+        }
+        foreach (var item in avalibleActions.enemyList.moves)
+        {
+            item.hex.SwitchAvalibleForUnitAttack();
         }
 
     }
@@ -145,6 +157,10 @@ public class Hex : MonoBehaviour
         foreach (Move item in unit.avalibleHices.moves)
         {
             item.hex.SwitchAvalibleForUnitMove();
+        }
+        foreach (Move item in unit.avalibleEnemyHices.moves)
+        {
+            item.hex.SwitchAvalibleForUnitAttack();
         }
     }
 
@@ -159,6 +175,22 @@ public class Hex : MonoBehaviour
         else
         {
             isHighlightedForUnitAvalibleMove = false;
+            currColor = defaultColor;
+            cellRenderer.color = currColor;
+        }
+    }
+
+    public void SwitchAvalibleForUnitAttack()
+    {
+        if (!isHighlightedForUnitAvalibleAttack)
+        {
+            isHighlightedForUnitAvalibleAttack = true;
+            currColor = avalibleForUnitAttackColor;
+            cellRenderer.color = currColor;
+        }
+        else
+        {
+            isHighlightedForUnitAvalibleAttack = false;
             currColor = defaultColor;
             cellRenderer.color = currColor;
         }
@@ -220,33 +252,4 @@ public class Hex : MonoBehaviour
     }
 
     #endregion
-
-    /*
-    #region ISerializationCallbackReceiver
-    public void OnBeforeSerialize()
-    {
-        if (unit != null)
-        {
-            unitJson = JsonUtility.ToJson(unit);
-        }
-        else
-        {
-            unitJson = null;
-        }
-        
-    }
-
-    public void OnAfterDeserialize()
-    {
-        _unit = JsonUtility.FromJson<Unit>(unitJson);
-        if (isApplicationisPlaying)
-        {
-            //Создание юнита на клетке из префаба, который хранится в гм
-            unit = Instantiate(GameManager.instance.unitsPrefabs[_unit.unitName], transform).GetComponent<Unit>();
-            JsonUtility.FromJsonOverwrite(unitJson, unit);
-            UpdateUnit();
-        }
-    }
-    #endregion
-    */
 }
