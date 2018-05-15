@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour
     public float tmpAnimNormTime;
     [NonSerialized]
     public MoveList avalibleHices = new MoveList();
+    public MoveList avalibleEnemyHices = new MoveList();
     Hex tmpHex;
 
     #region Serializable
@@ -24,15 +25,31 @@ public class Unit : MonoBehaviour
     int maxHP;
     [SerializeField]
     int currHP;
+    private PlayerController _owner;
+    public PlayerController owner
+    {
+        get
+        {
+            return _owner;
+        }
+        set
+        {
+            if (owner != null)
+                if (!GameManager.instance.players[GameManager.instance.players.IndexOf(owner)].units.Contains(this))
+                    GameManager.instance.players[GameManager.instance.players.IndexOf(owner)].units.Remove(this);
+            if (!GameManager.instance.players[GameManager.instance.players.IndexOf(value)].units.Contains(this))
+                GameManager.instance.players[GameManager.instance.players.IndexOf(value)].units.Add(this);
+            _owner = value;
+        }
+    }
 
     #endregion
 
     private void Start()
     {
-        //hpText = Instantiate(hpText.gameObject, GameManager.instance.canvas.transform).GetComponent<Text>();
+        if (owner == null && GameManager.instance.currActivePlayer != null)
+            owner = GameManager.instance.currActivePlayer;
         currHP = maxHP;
-        //ShowUnitHealth();
-
         if (unitName != null && unitName != "")
         {
             gameObject.name = unitName;
@@ -43,16 +60,17 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public MoveList GetAvalibleMoves(Hex hex)
+    public AvalibleActions GetAvalibleMoves(Hex hex)
     {
         if (hex != null)
         {
             avalibleHices.Clear();
+            avalibleEnemyHices.Clear();
             var temp = GetAvalibleHices(hex, currAbleSteps);
             temp.RemoveByHex(hex);
-            return temp;
+            return new AvalibleActions(temp, avalibleEnemyHices);
         }
-        return null;
+        return new AvalibleActions(null, null);
     }
 
     MoveList GetAvalibleHices(Hex hex, int _currAbleSteps)
@@ -112,6 +130,17 @@ public class Unit : MonoBehaviour
                 }
                 GetAvalibleHices(tmpHex, _currAbleSteps);
             }
+            else
+            {
+                if (avalibleEnemyHices.FindByHex(tmpHex) == null || avalibleEnemyHices.FindByHex(tmpHex).price > currAbleSteps - _currAbleSteps)
+                {
+                    if (tmpHex.unit.owner != owner)
+                    {
+                        avalibleEnemyHices.RemoveByHex(tmpHex);
+                        avalibleEnemyHices.Add(new Move(tmpHex, currAbleSteps - _currAbleSteps));
+                    }
+                }
+            }
         }
     }
 
@@ -126,7 +155,7 @@ public class Unit : MonoBehaviour
 
     public string Serialize()
     {
-        return unitName + "/" + currAbleSteps + "/" + maxAbleSteps + "/" + maxHP + "/" + currHP;
+        return unitName + "/" + currAbleSteps + "/" + maxAbleSteps + "/" + maxHP + "/" + currHP + "/" + GameManager.instance.players.IndexOf(owner);
     }
     
     public void Deserialize(string[] vs)
@@ -136,6 +165,7 @@ public class Unit : MonoBehaviour
         maxAbleSteps = int.Parse(vs[2]);
         maxHP = int.Parse(vs[3]);
         currHP = int.Parse(vs[4]);
+        owner = GameManager.instance.players[int.Parse(vs[5])];
     }
 
     #endregion
