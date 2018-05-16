@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
+    public GameObject mainMenuCanvas;
+
+    public void PlayGame()
+    {
+        Map.instance.PlayGame();
+        Destroy(mainMenuCanvas);
+    }
+
+    public void LoadLastSave()
+    {
+        Map.instance.LoadLastSave();
+        Destroy(mainMenuCanvas);
+    }
 	
     public void ExitGame()
     {

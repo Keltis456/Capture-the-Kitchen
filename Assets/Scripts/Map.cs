@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Map : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class Map : MonoBehaviour {
     string hexName;
     string outputTmp = "";
     string[] cellJson;
+    string saveFileName;
 
     #region Singleton
     public static Map instance;
@@ -22,13 +24,18 @@ public class Map : MonoBehaviour {
         if (instance == null) instance = this;
     }
     #endregion
-
+    /*
     void Start () {
         startPos = transform.position;
         //hices = new Hex[(int)sizeOfMap.x, (int)sizeOfMap.y];
         InitializeNewMap();
-        DebugMap();
         //SaveMap();
+    }
+    */
+    public void PlayGame()
+    {
+        startPos = transform.position;
+        InitializeNewMap();
     }
 
     public void InitializeNewMap()
@@ -68,6 +75,14 @@ public class Map : MonoBehaviour {
             outputTmp += item.Serialize() + "|";
         }
         Debug.Log(outputTmp);
+        saveFileName = Application.persistentDataPath + "/" + System.DateTime.Now.Year + "_" + System.DateTime.Now.DayOfYear + "_" + System.DateTime.Now.Hour + "_" + System.DateTime.Now.Minute + "_" + System.DateTime.Now.Second;
+        if (File.Exists(saveFileName))
+        {
+            File.Delete(saveFileName);
+        }
+        File.WriteAllText(saveFileName, outputTmp);
+        Debug.Log(Application.persistentDataPath);
+        
     }
     /*
     public void SaveMap(string fileName)
@@ -80,8 +95,9 @@ public class Map : MonoBehaviour {
         Debug.Log(outputTmp);
     }
     */
-    public void LoadMap()
+    public void LoadLastSave()
     {
+        outputTmp = File.ReadAllText(GetLastSave());
         if (outputTmp != null && outputTmp != "")
         {
             foreach (var item in hices)
@@ -103,12 +119,16 @@ public class Map : MonoBehaviour {
         }
     }
 
-    public void DebugMap()
-    {/*
-        hices[0, 0].GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        hices[hices.GetLength(0) - 1, 0].GetComponentInChildren<SpriteRenderer>().color = Color.magenta;
-        hices[0, hices.GetLength(1) - 1].GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
-        hices[hices.GetLength(0) - 1, hices.GetLength(1) - 1].GetComponentInChildren<SpriteRenderer>().color = Color.green;*/
+    string GetLastSave()
+    {
+        string maxFileName = null;
+        System.DateTime maxFileCreationDateTime = System.DateTime.MinValue;
+        foreach (string fileName in Directory.GetFiles(Application.persistentDataPath))
+        {
+            if(File.GetCreationTime(fileName) > maxFileCreationDateTime) maxFileCreationDateTime = File.GetCreationTime(fileName);
+            maxFileName = fileName;
+        }
+        return maxFileName;
     }
 
     GameObject getRandomCellPrefab()
