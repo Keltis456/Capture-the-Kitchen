@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject debugUnitGO;
     public GameObject debugUnitGO2;
     public List<Unit> units = new List<Unit>();
+    Hex.UnitMoveResponse unitMoveResponse;
 
     private void Start()
     {
@@ -83,7 +84,8 @@ public class PlayerController : MonoBehaviour {
 
         activeHex.HideAvalibleHicesForMove();
         activeHex.ChangeColor();
-        if (!activeHex.MoveUnitTo(_hex))
+        unitMoveResponse = activeHex.MoveUnitTo(_hex);
+        if (unitMoveResponse == Hex.UnitMoveResponse.CantMove)
         {
             Debug.Log("Cant move unit!");
         }

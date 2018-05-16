@@ -24,14 +24,7 @@ public class Map : MonoBehaviour {
         if (instance == null) instance = this;
     }
     #endregion
-    /*
-    void Start () {
-        startPos = transform.position;
-        //hices = new Hex[(int)sizeOfMap.x, (int)sizeOfMap.y];
-        InitializeNewMap();
-        //SaveMap();
-    }
-    */
+    
     public void PlayGame()
     {
         startPos = transform.position;
@@ -44,7 +37,7 @@ public class Map : MonoBehaviour {
         {
             for (int j = 0; j < sizeOfMap.y; j++)
             {
-                hex = getRandomCellPrefab();
+                hex = cell_prefabs[Random.Range(0, cell_prefabs.Length)];
                 hexName = hex.name;
                 hex = Instantiate(hex, new Vector2(startPos.x + j * 3.84f, startPos.y + i * 4.43f - j * 2.215f), Quaternion.identity);
                 hex.name = hexName;
@@ -84,17 +77,7 @@ public class Map : MonoBehaviour {
         Debug.Log(Application.persistentDataPath);
         
     }
-    /*
-    public void SaveMap(string fileName)
-    {
-        outputTmp = "";
-        foreach (var item in hices)
-        {
-            outputTmp += JsonUtility.ToJson(item) + "|";
-        }
-        Debug.Log(outputTmp);
-    }
-    */
+
     public void LoadLastSave()
     {
         outputTmp = File.ReadAllText(GetLastSave());
@@ -129,10 +112,5 @@ public class Map : MonoBehaviour {
             maxFileName = fileName;
         }
         return maxFileName;
-    }
-
-    GameObject getRandomCellPrefab()
-    {
-        return cell_prefabs[Random.Range(0, cell_prefabs.Length)];
     }
 }
