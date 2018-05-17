@@ -85,6 +85,35 @@ public class PlayerController : MonoBehaviour {
         activeHex.HideAvalibleHicesForMove();
         activeHex.ChangeColor();
         unitMoveResponse = activeHex.MoveUnitTo(_hex);
+        if (unitMoveResponse == Hex.UnitMoveResponse.Attack)
+        {
+            Move theBestMoveForAttack = new Move(null, int.MaxValue);
+            Move tmpMove = theBestMoveForAttack;
+            foreach (Move adjcell in _hex.unit.GetAvalibleMoves(_hex, 1).moveList.moves)
+            {
+                tmpMove = activeHex.unit.avalibleHices.FindByHex(adjcell.hex);
+                if (tmpMove != null)
+                {
+                    if (tmpMove.price < theBestMoveForAttack.price)
+                    {
+                        theBestMoveForAttack = tmpMove;
+                    }
+                }
+            }
+            foreach (Move adjcell in _hex.unit.avalibleEnemyHices.moves)
+            {
+                if (adjcell.hex == activeHex)
+                {
+                    theBestMoveForAttack.hex = null;
+                    theBestMoveForAttack.price = 0;
+                    break;
+                }
+            }
+            if (theBestMoveForAttack.hex != null) unitMoveResponse = activeHex.MoveUnitTo(theBestMoveForAttack.hex);
+            else Debug.Log("Alredy in position");
+            Debug.Log("Can attack");
+
+        }
         if (unitMoveResponse == Hex.UnitMoveResponse.CantMove)
         {
             Debug.Log("Cant move unit!");

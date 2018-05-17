@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     Vector2 mouseDragStartPos;
-
+    
     public float minCamSize = 5;
     public float maxCamSize = 20;
     

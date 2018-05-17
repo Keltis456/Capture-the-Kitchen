@@ -9,12 +9,14 @@ public class MainMenu : MonoBehaviour {
     public void PlayGame()
     {
         Map.instance.PlayGame();
+        GameManager.instance.StartGame();
         Destroy(mainMenuCanvas);
     }
 
     public void LoadLastSave()
     {
         Map.instance.LoadLastSave();
+        GameManager.instance.StartGame();
         Destroy(mainMenuCanvas);
     }
 	

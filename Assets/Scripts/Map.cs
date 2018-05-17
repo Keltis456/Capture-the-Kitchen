@@ -92,7 +92,7 @@ public class Map : MonoBehaviour {
             {
                 if (item != "" && item != null)
                 {
-                    Debug.Log(item);
+                    //Debug.Log(item);
                     cellJson = item.Split((char)92);
                     hices.Add(Instantiate(GameManager.instance.cellPrefabs[cellJson[0]], new Vector2(startPos.x + int.Parse(cellJson[2]) * 3.84f, startPos.y + int.Parse(cellJson[1]) * 4.43f - int.Parse(cellJson[2]) * 2.215f), Quaternion.identity).GetComponent<Hex>());
                     hices[hices.Count - 1].Deserialize(cellJson);

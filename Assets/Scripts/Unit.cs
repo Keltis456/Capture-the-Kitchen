@@ -73,6 +73,19 @@ public class Unit : MonoBehaviour
         return new AvalibleActions(null, null);
     }
 
+    public AvalibleActions GetAvalibleMoves(Hex hex, int _currAbleSteps)
+    {
+        if (hex != null)
+        {
+            avalibleHices.Clear();
+            avalibleEnemyHices.Clear();
+            var temp = GetAvalibleHices(hex, _currAbleSteps);
+            temp.RemoveByHex(hex);
+            return new AvalibleActions(temp, avalibleEnemyHices);
+        }
+        return new AvalibleActions(null, null);
+    }
+
     MoveList GetAvalibleHices(Hex hex, int _currAbleSteps)
     {
         if (hex != null)
