@@ -11,8 +11,6 @@ public class Hex : MonoBehaviour
     Color defaultColor;
     Color currColor;
 
-    bool isApplicationisPlaying;
-
     bool isHighlightedForUnitAvalibleMove;
     bool isHighlightedForUnitAvalibleAttack;
 
@@ -46,8 +44,6 @@ public class Hex : MonoBehaviour
         cellRenderer = graphics.GetComponentInChildren<SpriteRenderer>();
         defaultColor = cellRenderer.color;
         currColor = defaultColor;
-
-        isApplicationisPlaying = Application.isPlaying;
 
         if (hexName != null && hexName != "")
         {
@@ -131,8 +127,7 @@ public class Hex : MonoBehaviour
             unit.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             unit.transform.SetParent(transform);
             unit.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
-            unit.gameObject.GetComponent<Animation>().Play("Unit_Idle");
-            //unit.ShowUnitHealth();
+           
         }
     }
 
@@ -198,15 +193,24 @@ public class Hex : MonoBehaviour
 
     public UnitMoveResponse MoveUnitTo(Hex _hex)
     {
-        if (_hex.unit == null && unit.avalibleHices.FindByHex(_hex) != null)
+        if(unit.avalibleHices.FindByHex(_hex) == null && unit.avalibleEnemyHices.FindByHex(_hex) == null)
+            return UnitMoveResponse.CantMove;
+
+        if (_hex.unit == null)
         {
             unit.currAbleSteps -= unit.avalibleHices.FindByHex(_hex).price;
             _hex.SetUnit(unit);
             unit = null;
             return UnitMoveResponse.Move;
         }
+        if (_hex.unit != null)
+        {
+            if (_hex.unit.owner != unit.owner)
+            {
+                return UnitMoveResponse.Attack;
+            }
+        }
         return UnitMoveResponse.CantMove;
-        //TODO : Дописать логику под атаку юнита
     }
 
     public void DestroyUnit()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-    public GameObject mainMenuCanvas;
+    [SerializeField]
+    GameObject mainMenuCanvas;
 
     public void PlayGame()
     {

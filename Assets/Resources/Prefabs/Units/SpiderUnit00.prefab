@@ -363,7 +363,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4316548188041762}
   - component: {fileID: 114990383000330010}
-  - component: {fileID: 111903939899274590}
   m_Layer: 0
   m_Name: SpiderUnit00
   m_TagString: Untagged
@@ -1796,21 +1795,6 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 11d14a30c6929b44fbb8e5a69978814b, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!111 &111903939899274590
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1448221379961092}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: cb2af878e44eb2b4d97b6ff97671b372, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: cb2af878e44eb2b4d97b6ff97671b372, type: 2}
-  m_WrapMode: 2
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0

@@ -6,9 +6,13 @@ public class GameManager : MonoBehaviour {
 
     public List<PlayerController> players = new List<PlayerController>();
     public PlayerController currActivePlayer;
-    public GameObject playerEthalon;
-    public Canvas canvas;
-    public GameObject mainMenu;
+
+    [SerializeField]
+    GameObject playerEthalon;
+    [SerializeField]
+    Canvas canvas;
+    [SerializeField]
+    GameObject mainMenu;
 
     GameObject[] unitsPrefabsArray;
     public Dictionary<string, GameObject> unitsPrefabs;
@@ -28,6 +32,7 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         Instantiate(mainMenu).name = mainMenu.name;
+
         //Загрузка префабов для юнитов
         unitsPrefabsArray = Resources.LoadAll<GameObject>("Prefabs/Units");
         unitsPrefabs = new Dictionary<string, GameObject>();
@@ -35,8 +40,6 @@ public class GameManager : MonoBehaviour {
         {
             unitsPrefabs.Add(item.name, item);
         }
-        //Debug.Log(unitsPrefabs);
-
         //Загрузка префабов для клеток
         cellPrefabsArray = Resources.LoadAll<GameObject>("Prefabs/Cells");
         cellPrefabs = new Dictionary<string, GameObject>();
@@ -44,38 +47,48 @@ public class GameManager : MonoBehaviour {
         {
             cellPrefabs.Add(item.name, item);
         }
+    }
 
-        players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
-        players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
-        currActivePlayer = players[0];
+    public void StartGame(int playersCount, int currPlayer)
+    {
+        players.Clear();
+        for (int i = 0; i < playersCount; i++)
+        {
+            players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
+        }
+        SetCurrentPlayer(currPlayer);
+    }
+
+    void SetCurrentPlayer(int num)
+    {
+        if(players[num] != null)
+        {
+            if (currActivePlayer != null) currActivePlayer.SetActiveHex(currActivePlayer.activeHex);
+            foreach (PlayerController player in players)
+            {
+                foreach (Unit item in player.units)
+                {
+                    item.currAbleSteps = 0;
+                }
+            }
+            currActivePlayer = players[num];
+            foreach (Unit item in currActivePlayer.units)
+            {
+                item.currAbleSteps = item.maxAbleSteps;
+            }
+            Debug.Log("CurrActivePlayer = " + players.IndexOf(currActivePlayer));
+        }
     }
 
     public void EndOfPlayerTurn()
     {
-        currActivePlayer.SetActiveHex(currActivePlayer.activeHex);
-        foreach (Unit item in currActivePlayer.units)
-        {
-            item.currAbleSteps = 0;
-            //item.gameObject.GetComponent<Animation>().Play("Unit_Idle");
-            //item.gameObject.GetComponent<Animation>()["Unit_Idle"]
-
-            item.tmpAnimNormTime = item.gameObject.GetComponent<Animation>()["Unit_Idle"].normalizedTime;
-            item.gameObject.GetComponent<Animation>().Stop();
-        }
         if (players.IndexOf(currActivePlayer) + 1 >= players.Count)
         {
-            currActivePlayer = players[0];
+            SetCurrentPlayer(0);
         }
         else
         {
-            currActivePlayer = players[players.IndexOf(currActivePlayer) + 1];
+            SetCurrentPlayer(players.IndexOf(currActivePlayer) + 1);
         }
-        foreach (Unit item in currActivePlayer.units)
-        {
-            item.currAbleSteps = item.maxAbleSteps;
-            item.gameObject.GetComponent<Animation>().Play("Unit_Idle");
-            item.gameObject.GetComponent<Animation>()["Unit_Idle"].normalizedTime = item.tmpAnimNormTime;
-        }
-        Debug.Log("CurrActivePlayer = " + players.IndexOf(currActivePlayer));
     }
 }

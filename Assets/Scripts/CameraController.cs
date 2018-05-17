@@ -6,8 +6,10 @@ public class CameraController : MonoBehaviour {
 
     Vector2 mouseDragStartPos;
 
-    public float minCamSize = 5;
-    public float maxCamSize = 20;
+    [SerializeField]
+    float minCamSize = 5;
+    [SerializeField]
+    float maxCamSize = 20;
     
 	void Update () {
         if (Input.mouseScrollDelta.y != 0)

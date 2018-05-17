@@ -5,23 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public Hex activeHex;
-    public GameObject debugUnitGO;
-    public GameObject debugUnitGO2;
     public List<Unit> units = new List<Unit>();
     Hex.UnitMoveResponse unitMoveResponse;
 
     private void Start()
     {
-        if (debugUnitGO == null)
-        {
-            debugUnitGO = GameManager.instance.unitsPrefabs["Unit01"];
-            Debug.Log(debugUnitGO);
-        }
-        if (debugUnitGO2 == null)
-        {
-            debugUnitGO2 = GameManager.instance.unitsPrefabs["Unit02"];
-            Debug.Log(debugUnitGO2);
-        }
+        DebugUnitsInit();
     }
 
     public void SetActiveHex(Hex _hex)
@@ -85,12 +74,59 @@ public class PlayerController : MonoBehaviour {
         activeHex.HideAvalibleHicesForMove();
         activeHex.ChangeColor();
         unitMoveResponse = activeHex.MoveUnitTo(_hex);
+        if (unitMoveResponse == Hex.UnitMoveResponse.Attack)
+        {
+            Move theBestMoveForAttack = new Move(null, int.MaxValue);
+            Move tmpMove = theBestMoveForAttack;
+            foreach (Move adjcell in _hex.unit.GetAvalibleMoves(_hex, 1).moveList.moves)
+            {
+                tmpMove = activeHex.unit.avalibleHices.FindByHex(adjcell.hex);
+                if (tmpMove != null)
+                {
+                    if (tmpMove.price < theBestMoveForAttack.price)
+                    {
+                        theBestMoveForAttack = tmpMove;
+                    }
+                }
+            }
+            foreach (Move adjcell in _hex.unit.avalibleEnemyHices.moves)
+            {
+                if (adjcell.hex == activeHex)
+                {
+                    theBestMoveForAttack.hex = null;
+                    theBestMoveForAttack.price = 0;
+                    break;
+                }
+            }
+            if (theBestMoveForAttack.hex != null) unitMoveResponse = activeHex.MoveUnitTo(theBestMoveForAttack.hex);
+            else Debug.Log("Alredy in position");
+            Debug.Log("Can attack");
+
+        }
         if (unitMoveResponse == Hex.UnitMoveResponse.CantMove)
         {
             Debug.Log("Cant move unit!");
         }
         
         activeHex = null;
+    }
+
+    #region Debug
+    public GameObject debugUnitGO;
+    public GameObject debugUnitGO2;
+
+    void DebugUnitsInit()
+    {
+        if (debugUnitGO == null)
+        {
+            debugUnitGO = GameManager.instance.unitsPrefabs["Unit01"];
+            Debug.Log(debugUnitGO);
+        }
+        if (debugUnitGO2 == null)
+        {
+            debugUnitGO2 = GameManager.instance.unitsPrefabs["Unit02"];
+            Debug.Log(debugUnitGO2);
+        }
     }
 
     public void CreateDebugUnitOnHex(Hex _hex)
@@ -108,4 +144,5 @@ public class PlayerController : MonoBehaviour {
             units.Add(_hex.SetUnit(Instantiate(_unitGO, _hex.transform).GetComponent<Unit>()));
         }
     }
+    #endregion
 }
