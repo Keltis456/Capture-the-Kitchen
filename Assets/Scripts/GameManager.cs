@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public PlayerController currActivePlayer;
     public GameObject playerEthalon;
     public Canvas canvas;
+    public GameObject mainMenu;
 
     GameObject[] unitsPrefabsArray;
     public Dictionary<string, GameObject> unitsPrefabs;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
+        Instantiate(mainMenu).name = mainMenu.name;
         //Загрузка префабов для юнитов
         unitsPrefabsArray = Resources.LoadAll<GameObject>("Prefabs/Units");
         unitsPrefabs = new Dictionary<string, GameObject>();

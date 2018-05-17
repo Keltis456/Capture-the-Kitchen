@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Map : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class Map : MonoBehaviour {
     string hexName;
     string outputTmp = "";
     string[] cellJson;
+    string saveFileName;
 
     #region Singleton
     public static Map instance;
@@ -22,13 +24,11 @@ public class Map : MonoBehaviour {
         if (instance == null) instance = this;
     }
     #endregion
-
-    void Start () {
+    
+    public void PlayGame()
+    {
         startPos = transform.position;
-        //hices = new Hex[(int)sizeOfMap.x, (int)sizeOfMap.y];
         InitializeNewMap();
-        DebugMap();
-        //SaveMap();
     }
 
     public void InitializeNewMap()
@@ -37,7 +37,7 @@ public class Map : MonoBehaviour {
         {
             for (int j = 0; j < sizeOfMap.y; j++)
             {
-                hex = getRandomCellPrefab();
+                hex = cell_prefabs[Random.Range(0, cell_prefabs.Length)];
                 hexName = hex.name;
                 hex = Instantiate(hex, new Vector2(startPos.x + j * 3.84f, startPos.y + i * 4.43f - j * 2.215f), Quaternion.identity);
                 hex.name = hexName;
@@ -68,20 +68,19 @@ public class Map : MonoBehaviour {
             outputTmp += item.Serialize() + "|";
         }
         Debug.Log(outputTmp);
-    }
-    /*
-    public void SaveMap(string fileName)
-    {
-        outputTmp = "";
-        foreach (var item in hices)
+        saveFileName = Application.persistentDataPath + "/" + System.DateTime.Now.Year + "_" + System.DateTime.Now.DayOfYear + "_" + System.DateTime.Now.Hour + "_" + System.DateTime.Now.Minute + "_" + System.DateTime.Now.Second;
+        if (File.Exists(saveFileName))
         {
-            outputTmp += JsonUtility.ToJson(item) + "|";
+            File.Delete(saveFileName);
         }
-        Debug.Log(outputTmp);
+        File.WriteAllText(saveFileName, outputTmp);
+        Debug.Log(Application.persistentDataPath);
+        
     }
-    */
-    public void LoadMap()
+
+    public void LoadLastSave()
     {
+        outputTmp = File.ReadAllText(GetLastSave());
         if (outputTmp != null && outputTmp != "")
         {
             foreach (var item in hices)
@@ -103,16 +102,15 @@ public class Map : MonoBehaviour {
         }
     }
 
-    public void DebugMap()
-    {/*
-        hices[0, 0].GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        hices[hices.GetLength(0) - 1, 0].GetComponentInChildren<SpriteRenderer>().color = Color.magenta;
-        hices[0, hices.GetLength(1) - 1].GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
-        hices[hices.GetLength(0) - 1, hices.GetLength(1) - 1].GetComponentInChildren<SpriteRenderer>().color = Color.green;*/
-    }
-
-    GameObject getRandomCellPrefab()
+    string GetLastSave()
     {
-        return cell_prefabs[Random.Range(0, cell_prefabs.Length)];
+        string maxFileName = null;
+        System.DateTime maxFileCreationDateTime = System.DateTime.MinValue;
+        foreach (string fileName in Directory.GetFiles(Application.persistentDataPath))
+        {
+            if(File.GetCreationTime(fileName) > maxFileCreationDateTime) maxFileCreationDateTime = File.GetCreationTime(fileName);
+            maxFileName = fileName;
+        }
+        return maxFileName;
     }
 }

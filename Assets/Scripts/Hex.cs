@@ -196,16 +196,17 @@ public class Hex : MonoBehaviour
         }
     }
 
-    public bool MoveUnitTo(Hex _hex)
+    public UnitMoveResponse MoveUnitTo(Hex _hex)
     {
         if (_hex.unit == null && unit.avalibleHices.FindByHex(_hex) != null)
         {
             unit.currAbleSteps -= unit.avalibleHices.FindByHex(_hex).price;
             _hex.SetUnit(unit);
             unit = null;
-            return true;
+            return UnitMoveResponse.Move;
         }
-        return false;
+        return UnitMoveResponse.CantMove;
+        //TODO : Дописать логику под атаку юнита
     }
 
     public void DestroyUnit()
@@ -252,4 +253,11 @@ public class Hex : MonoBehaviour
     }
 
     #endregion
+
+    public enum UnitMoveResponse
+    {
+        CantMove,
+        Move,
+        Attack
+    }
 }
