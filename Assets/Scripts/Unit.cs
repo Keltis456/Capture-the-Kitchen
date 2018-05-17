@@ -4,13 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-[Serializable]
 public class Unit : MonoBehaviour
 {
-    Text hpText;
-    [NonSerialized]
-    public float tmpAnimNormTime;
-    [NonSerialized]
     public MoveList avalibleHices = new MoveList();
     public MoveList avalibleEnemyHices = new MoveList();
     Hex tmpHex;
@@ -155,13 +150,6 @@ public class Unit : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void ShowUnitHealth()
-    {
-        hpText.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, 0));
-        hpText.transform.position = new Vector3(hpText.transform.position.x, hpText.transform.position.y, 0);
-        hpText.text = currHP.ToString();
     }
 
     #region Serialization

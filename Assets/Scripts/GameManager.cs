@@ -6,9 +6,13 @@ public class GameManager : MonoBehaviour {
 
     public List<PlayerController> players = new List<PlayerController>();
     public PlayerController currActivePlayer;
-    public GameObject playerEthalon;
-    public Canvas canvas;
-    public GameObject mainMenu;
+
+    [SerializeField]
+    GameObject playerEthalon;
+    [SerializeField]
+    Canvas canvas;
+    [SerializeField]
+    GameObject mainMenu;
 
     GameObject[] unitsPrefabsArray;
     public Dictionary<string, GameObject> unitsPrefabs;
@@ -43,14 +47,16 @@ public class GameManager : MonoBehaviour {
         {
             cellPrefabs.Add(item.name, item);
         }
-
-        players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
-        players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
     }
 
-    public void StartGame()
+    public void StartGame(int playersCount, int currPlayer)
     {
-        SetCurrentPlayer(0);
+        players.Clear();
+        for (int i = 0; i < playersCount; i++)
+        {
+            players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
+        }
+        SetCurrentPlayer(currPlayer);
     }
 
     void SetCurrentPlayer(int num)

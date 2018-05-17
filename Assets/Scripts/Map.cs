@@ -7,14 +7,18 @@ public class Map : MonoBehaviour {
 
     public List<Hex> hices = new List<Hex>();
 
-    public GameObject[] cell_prefabs;
-    public Vector2 sizeOfMap = new Vector2(1,1);
+    [SerializeField]
+    GameObject[] cell_prefabs;
+    [SerializeField]
+    Vector2 sizeOfMap = new Vector2(1,1);
     Vector2 startPos;
     GameObject hex;
     string hexName;
     string outputTmp = "";
+    string[] saveFileContent;
     string[] cellJson;
     string saveFileName;
+    string[] stringSeparators = new string[] { "[stop]" };
 
     #region Singleton
     public static Map instance;
@@ -28,6 +32,7 @@ public class Map : MonoBehaviour {
     public void PlayGame()
     {
         startPos = transform.position;
+        GameManager.instance.StartGame(2,0);
         InitializeNewMap();
     }
 
@@ -63,6 +68,7 @@ public class Map : MonoBehaviour {
     public void SaveMap()
     {
         outputTmp = "";
+        outputTmp += GameManager.instance.players.Count + "|" + GameManager.instance.players.IndexOf(GameManager.instance.currActivePlayer) + "[stop]";
         foreach (var item in hices)
         {
             outputTmp += item.Serialize() + "|";
@@ -81,6 +87,12 @@ public class Map : MonoBehaviour {
     public void LoadLastSave()
     {
         outputTmp = File.ReadAllText(GetLastSave());
+        saveFileContent = outputTmp.Split(stringSeparators, System.StringSplitOptions.RemoveEmptyEntries);
+        //Debug.Log(saveFileContent[0]);
+        outputTmp = saveFileContent[1];
+        saveFileContent = saveFileContent[0].Split((char)124);
+        GameManager.instance.StartGame(int.Parse(saveFileContent[0]), int.Parse(saveFileContent[1]));
+        
         if (outputTmp != null && outputTmp != "")
         {
             foreach (var item in hices)
