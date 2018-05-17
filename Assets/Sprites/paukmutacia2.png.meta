@@ -1,0 +1,910 @@
+fileFormatVersion: 2
+guid: d0200dc1427da354baed1212c6f20094
+timeCreated: 1526595057
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: paukmutacia2_0
+    21300002: paukmutacia2_1
+    21300004: paukmutacia2_2
+    21300006: paukmutacia2_3
+    21300008: paukmutacia2_4
+    21300010: paukmutacia2_5
+    21300012: paukmutacia2_6
+    21300014: paukmutacia2_7
+    21300016: paukmutacia2_8
+    21300018: paukmutacia2_9
+    21300020: paukmutacia2_10
+    21300022: paukmutacia2_11
+    21300024: paukmutacia2_12
+    21300026: paukmutacia2_13
+    21300028: paukmutacia2_14
+    21300030: paukmutacia2_15
+    21300032: paukmutacia2_16
+    21300034: paukmutacia2_17
+    21300036: paukmutacia2_18
+    21300038: paukmutacia2_19
+    21300040: paukmutacia2_20
+    21300042: paukmutacia2_21
+    21300044: paukmutacia2_22
+    21300046: paukmutacia2_23
+    21300048: paukmutacia2_24
+    21300050: paukmutacia2_25
+    21300052: paukmutacia2_26
+    21300054: paukmutacia2_27
+    21300056: paukmutacia2_28
+    21300058: paukmutacia2_29
+    21300060: paukmutacia2_30
+    21300062: paukmutacia2_31
+    21300064: paukmutacia2_32
+    21300066: paukmutacia2_33
+    21300068: paukmutacia2_34
+    21300070: paukmutacia2_35
+    21300072: paukmutacia2_36
+    21300074: paukmutacia2_37
+    21300076: paukmutacia2_38
+    21300078: paukmutacia2_39
+    21300080: paukmutacia2_40
+    21300082: paukmutacia2_41
+    21300084: paukmutacia2_42
+    21300086: paukmutacia2_43
+    21300088: paukmutacia2_44
+    21300090: paukmutacia2_45
+    21300092: paukmutacia2_46
+    21300094: paukmutacia2_47
+    21300096: paukmutacia2_48
+    21300098: paukmutacia2_49
+    21300100: paukmutacia2_50
+    21300102: paukmutacia2_51
+    21300104: paukmutacia2_52
+    21300106: paukmutacia2_53
+    21300108: paukmutacia2_54
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: paukmutacia2_0
+      rect:
+        serializedVersion: 2
+        x: 2822
+        y: 10276
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_1
+      rect:
+        serializedVersion: 2
+        x: 3292
+        y: 10177
+        width: 1031
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_2
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 10205
+        width: 37
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_3
+      rect:
+        serializedVersion: 2
+        x: 2773
+        y: 9491
+        width: 137
+        height: 782
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_4
+      rect:
+        serializedVersion: 2
+        x: 3394
+        y: 10162
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_5
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 9941
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_6
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 9946
+        width: 56
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_7
+      rect:
+        serializedVersion: 2
+        x: 5203
+        y: 9821
+        width: 1062
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_8
+      rect:
+        serializedVersion: 2
+        x: 5305
+        y: 9811
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_9
+      rect:
+        serializedVersion: 2
+        x: 5849
+        y: 9770
+        width: 50
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_10
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 9140
+        width: 431
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_11
+      rect:
+        serializedVersion: 2
+        x: 4863
+        y: 9745
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_12
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 9636
+        width: 30
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_13
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 9641
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_14
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 9631
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_15
+      rect:
+        serializedVersion: 2
+        x: 2784
+        y: 9476
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_16
+      rect:
+        serializedVersion: 2
+        x: 2979
+        y: 9274
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_17
+      rect:
+        serializedVersion: 2
+        x: 5447
+        y: 8105
+        width: 838
+        height: 1223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_18
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 7697
+        width: 782
+        height: 1575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_19
+      rect:
+        serializedVersion: 2
+        x: 5371
+        y: 8104
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_20
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 7739
+        width: 385
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_21
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 7725
+        width: 29
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_22
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 7723
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_23
+      rect:
+        serializedVersion: 2
+        x: 3617
+        y: 7674
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_24
+      rect:
+        serializedVersion: 2
+        x: 5071
+        y: 7147
+        width: 497
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_25
+      rect:
+        serializedVersion: 2
+        x: 5138
+        y: 7369
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_26
+      rect:
+        serializedVersion: 2
+        x: 2684
+        y: 7288
+        width: 76
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_27
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 6960
+        width: 777
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_28
+      rect:
+        serializedVersion: 2
+        x: 2647
+        y: 7067
+        width: 787
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_29
+      rect:
+        serializedVersion: 2
+        x: 4491
+        y: 5745
+        width: 636
+        height: 1398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_30
+      rect:
+        serializedVersion: 2
+        x: 5682
+        y: 7113
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_31
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 6356
+        width: 432
+        height: 568
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_32
+      rect:
+        serializedVersion: 2
+        x: 2110
+        y: 5360
+        width: 921
+        height: 1203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_33
+      rect:
+        serializedVersion: 2
+        x: 3033
+        y: 6534
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_34
+      rect:
+        serializedVersion: 2
+        x: 5686
+        y: 6330
+        width: 467
+        height: 772
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_35
+      rect:
+        serializedVersion: 2
+        x: 3439
+        y: 5903
+        width: 401
+        height: 493
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_36
+      rect:
+        serializedVersion: 2
+        x: 3521
+        y: 6386
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_37
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 6335
+        width: 50
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_38
+      rect:
+        serializedVersion: 2
+        x: 6129
+        y: 6315
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_39
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 4622
+        width: 1031
+        height: 1393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_40
+      rect:
+        serializedVersion: 2
+        x: 3841
+        y: 5939
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_41
+      rect:
+        serializedVersion: 2
+        x: 3040
+        y: 4841
+        width: 688
+        height: 497
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_42
+      rect:
+        serializedVersion: 2
+        x: 4360
+        y: 4922
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_43
+      rect:
+        serializedVersion: 2
+        x: 2438
+        y: 4063
+        width: 497
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_44
+      rect:
+        serializedVersion: 2
+        x: 4354
+        y: 3545
+        width: 417
+        height: 1377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_45
+      rect:
+        serializedVersion: 2
+        x: 4873
+        y: 4409
+        width: 27
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_46
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 2808
+        width: 472
+        height: 1133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_47
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 3882
+        width: 15
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_48
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 3592
+        width: 636
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_49
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 3016
+        width: 630
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_50
+      rect:
+        serializedVersion: 2
+        x: 3022
+        y: 1975
+        width: 869
+        height: 563
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_51
+      rect:
+        serializedVersion: 2
+        x: 4171
+        y: 2331
+        width: 793
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_52
+      rect:
+        serializedVersion: 2
+        x: 4152
+        y: 1970
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_53
+      rect:
+        serializedVersion: 2
+        x: 4156
+        y: 760
+        width: 605
+        height: 1291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: paukmutacia2_54
+      rect:
+        serializedVersion: 2
+        x: 4634
+        y: 755
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

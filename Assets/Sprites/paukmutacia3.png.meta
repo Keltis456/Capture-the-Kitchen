@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 2655dbf44490b5d448193d392caeb5e9
-timeCreated: 1526592623
+guid: 0c6ba68ceb57e9e41af747000b897675
+timeCreated: 1526595002
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: muraveimutacia1_0
-    21300002: muraveimutacia1_1
-    21300004: muraveimutacia1_2
-    21300006: muraveimutacia1_3
-    21300008: muraveimutacia1_4
+    21300000: paukmutacia3_0
+    21300002: paukmutacia3_1
+    21300004: paukmutacia3_2
+    21300006: paukmutacia3_3
+    21300008: paukmutacia3_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -83,13 +83,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: muraveimutacia1_0
+      name: paukmutacia3_0
       rect:
         serializedVersion: 2
-        x: 188
-        y: 46
-        width: 966
-        height: 881
+        x: 201
+        y: 503
+        width: 218
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -97,13 +97,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_1
+      name: paukmutacia3_1
       rect:
         serializedVersion: 2
-        x: 1211
-        y: 687
-        width: 243
-        height: 198
+        x: 554
+        y: 421
+        width: 249
+        height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,13 +111,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_2
+      name: paukmutacia3_2
       rect:
         serializedVersion: 2
-        x: 1496
-        y: 749
-        width: 186
-        height: 201
+        x: 0
+        y: 13
+        width: 129
+        height: 321
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,13 +125,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_3
+      name: paukmutacia3_3
       rect:
         serializedVersion: 2
-        x: 1722
-        y: 705
-        width: 499
-        height: 384
+        x: 181
+        y: 306
+        width: 241
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,13 +139,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_4
+      name: paukmutacia3_4
       rect:
         serializedVersion: 2
-        x: 2272
-        y: 815
-        width: 597
-        height: 421
+        x: 508
+        y: 176
+        width: 247
+        height: 232
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,14 +1,13 @@
 fileFormatVersion: 2
-guid: 2655dbf44490b5d448193d392caeb5e9
-timeCreated: 1526592623
+guid: 5f9d37453528d7f4e8607e00c98d108d
+timeCreated: 1526593791
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: muraveimutacia1_0
-    21300002: muraveimutacia1_1
-    21300004: muraveimutacia1_2
-    21300006: muraveimutacia1_3
-    21300008: muraveimutacia1_4
+    21300000: taracanmutacia3_0
+    21300002: taracanmutacia3_1
+    21300004: taracanmutacia3_2
+    21300006: taracanmutacia3_3
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -83,13 +82,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: muraveimutacia1_0
+      name: taracanmutacia3_0
       rect:
         serializedVersion: 2
-        x: 188
-        y: 46
-        width: 966
-        height: 881
+        x: 185
+        y: 303
+        width: 125
+        height: 196
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -97,13 +96,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_1
+      name: taracanmutacia3_1
       rect:
         serializedVersion: 2
-        x: 1211
-        y: 687
-        width: 243
-        height: 198
+        x: 801
+        y: 452
+        width: 222
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,13 +110,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_2
+      name: taracanmutacia3_2
       rect:
         serializedVersion: 2
-        x: 1496
-        y: 749
-        width: 186
-        height: 201
+        x: 1064
+        y: 359
+        width: 216
+        height: 157
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,27 +124,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_3
+      name: taracanmutacia3_3
       rect:
         serializedVersion: 2
-        x: 1722
-        y: 705
-        width: 499
-        height: 384
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: muraveimutacia1_4
-      rect:
-        serializedVersion: 2
-        x: 2272
-        y: 815
-        width: 597
-        height: 421
+        x: 370
+        y: 176
+        width: 306
+        height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

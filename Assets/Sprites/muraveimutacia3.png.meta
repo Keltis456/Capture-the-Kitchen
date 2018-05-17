@@ -1,14 +1,12 @@
 fileFormatVersion: 2
-guid: 2655dbf44490b5d448193d392caeb5e9
-timeCreated: 1526592623
+guid: 0d77bb5cfeaa3b74bb7e6b48c8c8de16
+timeCreated: 1526592603
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: muraveimutacia1_0
-    21300002: muraveimutacia1_1
-    21300004: muraveimutacia1_2
-    21300006: muraveimutacia1_3
-    21300008: muraveimutacia1_4
+    21300000: muraveimutacia3_0
+    21300002: muraveimutacia3_1
+    21300004: muraveimutacia3_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -83,13 +81,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: muraveimutacia1_0
+      name: muraveimutacia3_0
       rect:
         serializedVersion: 2
-        x: 188
-        y: 46
-        width: 966
-        height: 881
+        x: 68
+        y: 573
+        width: 224
+        height: 309
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -97,13 +95,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_1
+      name: muraveimutacia3_1
       rect:
         serializedVersion: 2
-        x: 1211
-        y: 687
-        width: 243
-        height: 198
+        x: 465
+        y: 469
+        width: 370
+        height: 294
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,41 +109,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: muraveimutacia1_2
+      name: muraveimutacia3_2
       rect:
         serializedVersion: 2
-        x: 1496
-        y: 749
-        width: 186
-        height: 201
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: muraveimutacia1_3
-      rect:
-        serializedVersion: 2
-        x: 1722
-        y: 705
-        width: 499
-        height: 384
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: muraveimutacia1_4
-      rect:
-        serializedVersion: 2
-        x: 2272
-        y: 815
-        width: 597
-        height: 421
+        x: 244
+        y: 27
+        width: 367
+        height: 414
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
