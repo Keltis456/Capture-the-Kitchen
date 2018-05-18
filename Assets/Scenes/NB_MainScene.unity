@@ -1163,7 +1163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf807fe2f8d93bc46a6b91b1821fb911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgTransform: {fileID: 985052247}
   minCamSize: 5
   maxCamSize: 20
 --- !u!1 &1035677600
