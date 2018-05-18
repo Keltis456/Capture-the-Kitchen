@@ -68,13 +68,13 @@ public class GameManager : MonoBehaviour {
             {
                 foreach (Unit item in player.units)
                 {
-                    item.currAbleSteps = 0;
+                    item.movePoints = 0;
                 }
             }
             currActivePlayer = players[num];
             foreach (Unit item in currActivePlayer.units)
             {
-                item.currAbleSteps = item.maxAbleSteps;
+                item.movePoints = item.maxMovePoints;
             }
             Debug.Log("CurrActivePlayer = " + players.IndexOf(currActivePlayer));
         }

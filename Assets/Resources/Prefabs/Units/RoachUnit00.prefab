@@ -2105,11 +2105,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc5db2fc686857468cbeb9fbe9e77b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: RoachUnit00
-  currAbleSteps: 2
-  maxAbleSteps: 2
-  maxHP: 0
-  currHP: 0
+  maxHealthPoints: 12
+  damagePoints: 8
+  armourPoints: 3
+  experiencePointsPerLevel: 12
+  maxMovePoints: 2
+  foodPointsForReproduction: 2
+  foodPointsConsumption: 3
+  foodPointsBounty: 7
+  experiencePointsBounty: 5
+  movePoints: 2
 --- !u!212 &212024676584734716
 SpriteRenderer:
   m_ObjectHideFlags: 1

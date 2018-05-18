@@ -198,7 +198,7 @@ public class Hex : MonoBehaviour
 
         if (_hex.unit == null)
         {
-            unit.currAbleSteps -= unit.avalibleHices.FindByHex(_hex).price;
+            unit.movePoints -= unit.avalibleHices.FindByHex(_hex).price;
             _hex.SetUnit(unit);
             unit = null;
             return UnitMoveResponse.Move;
