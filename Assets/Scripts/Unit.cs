@@ -12,14 +12,41 @@ public class Unit : MonoBehaviour
 
     #region Serializable
 
-    public string unitName;
+    #region Unit Stats
+    [Space(10)]
+    [Header("Unit Stats")]
+    [SerializeField]
+    int maxHealthPoints;
+    [SerializeField]
+    int damagePoints;
+    [SerializeField]
+    int armourPoints;
+    [SerializeField]
+    int experiencePointsPerLevel;
+    public int maxMovePoints = 2;
+    [SerializeField]
+    int foodPointsForReproduction;
+    [SerializeField]
+    int foodPointsConsumption;
+    [Space(10)]
+    #endregion
+
+    #region Bounty
+    [Header("Bounty")]
+    [SerializeField]
+    int foodPointsBounty;
+    [SerializeField]
+    int experiencePointsBounty;
+    [Space(10)]
+    #endregion
+
+    string unitName;
     [HideInInspector]
-    public int currAbleSteps = 2;
-    public int maxAbleSteps = 2;
-    [SerializeField]
-    int maxHP;
-    [SerializeField]
+    public int movePoints = 2;
     int currHP;
+    int experiencePoints;
+    int currLevel;
+
     private PlayerController _owner;
     public PlayerController owner
     {
@@ -40,11 +67,13 @@ public class Unit : MonoBehaviour
 
     #endregion
 
+    #region Unity Methods
     private void Start()
     {
         if (owner == null && GameManager.instance.currActivePlayer != null)
             owner = GameManager.instance.currActivePlayer;
-        currHP = maxHP;
+        currHP = maxHealthPoints;
+        movePoints = maxMovePoints;
         if (unitName != null && unitName != "")
         {
             gameObject.name = unitName;
@@ -54,14 +83,16 @@ public class Unit : MonoBehaviour
             unitName = gameObject.name;
         }
     }
+    #endregion
 
+    #region Navigation
     public AvalibleActions GetAvalibleMoves(Hex hex)
     {
         if (hex != null)
         {
             avalibleHices.Clear();
             avalibleEnemyHices.Clear();
-            var temp = GetAvalibleHices(hex, currAbleSteps);
+            var temp = GetAvalibleHices(hex, movePoints);
             temp.RemoveByHex(hex);
             return new AvalibleActions(temp, avalibleEnemyHices);
         }
@@ -131,40 +162,41 @@ public class Unit : MonoBehaviour
         {
             if (tmpHex.unit == null)
             {
-                if (avalibleHices.FindByHex(tmpHex) == null || avalibleHices.FindByHex(tmpHex).price > currAbleSteps - _currAbleSteps)
+                if (avalibleHices.FindByHex(tmpHex) == null || avalibleHices.FindByHex(tmpHex).price > movePoints - _currAbleSteps)
                 {
                     avalibleHices.RemoveByHex(tmpHex);
-                    avalibleHices.Add(new Move(tmpHex, currAbleSteps - _currAbleSteps));
+                    avalibleHices.Add(new Move(tmpHex, movePoints - _currAbleSteps));
                 }
                 GetAvalibleHices(tmpHex, _currAbleSteps);
             }
             else
             {
-                if (avalibleEnemyHices.FindByHex(tmpHex) == null || avalibleEnemyHices.FindByHex(tmpHex).price > currAbleSteps - _currAbleSteps)
+                if (avalibleEnemyHices.FindByHex(tmpHex) == null || avalibleEnemyHices.FindByHex(tmpHex).price > movePoints - _currAbleSteps)
                 {
                     if (tmpHex.unit.owner != owner)
                     {
                         avalibleEnemyHices.RemoveByHex(tmpHex);
-                        avalibleEnemyHices.Add(new Move(tmpHex, currAbleSteps - _currAbleSteps));
+                        avalibleEnemyHices.Add(new Move(tmpHex, movePoints - _currAbleSteps));
                     }
                 }
             }
         }
     }
-
+    #endregion
+    
     #region Serialization
 
     public string Serialize()
     {
-        return unitName + "/" + currAbleSteps + "/" + maxAbleSteps + "/" + maxHP + "/" + currHP + "/" + GameManager.instance.players.IndexOf(owner);
+        return unitName + "/" + movePoints + "/" + maxMovePoints + "/" + maxHealthPoints + "/" + currHP + "/" + GameManager.instance.players.IndexOf(owner);
     }
     
     public void Deserialize(string[] vs)
     {
         unitName = vs[0];
-        currAbleSteps = int.Parse(vs[1]);
-        maxAbleSteps = int.Parse(vs[2]);
-        maxHP = int.Parse(vs[3]);
+        movePoints = int.Parse(vs[1]);
+        maxMovePoints = int.Parse(vs[2]);
+        maxHealthPoints = int.Parse(vs[3]);
         currHP = int.Parse(vs[4]);
         owner = GameManager.instance.players[int.Parse(vs[5])];
     }
