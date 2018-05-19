@@ -49,12 +49,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void StartGame(int playersCount, int currPlayer)
+    public void StartGame(int playersCount, int currPlayer, string[] vs)
     {
         players.Clear();
         for (int i = 0; i < playersCount; i++)
         {
             players.Add(Instantiate(playerEthalon).GetComponent<PlayerController>());
+            players[i].Deserialize(vs[i].Split((char)47));
         }
         SetCurrentPlayer(currPlayer);
     }

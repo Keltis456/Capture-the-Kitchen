@@ -23,11 +23,23 @@ public class Hex : MonoBehaviour
     [SerializeField]
     Color avalibleForUnitAttackColor = Color.HSVToRGB(1, 1, 1);
 
-
-    [NonSerialized]
-    public Unit unit;
+    private Unit _unit;
+    public Unit unit
+    {
+        get
+        {
+            return _unit;
+        }
+        set
+        {
+            if (value != null)
+            {
+                value.hex = this;
+            }
+            _unit = value;
+        }
+    }
     AvalibleActions avalibleActions;
-    Unit _unit;
 
     #region Serializable
 
@@ -222,9 +234,9 @@ public class Hex : MonoBehaviour
 
     public void DestroyUnit()
     {
-        if (unit != null && GameManager.instance.currActivePlayer.units.Contains(unit))
+        if (unit != null)
         {
-            GameManager.instance.currActivePlayer.units.Remove(unit);
+            unit.owner.units.Remove(unit);
             Destroy(unit.gameObject);
             unit = null;
         }

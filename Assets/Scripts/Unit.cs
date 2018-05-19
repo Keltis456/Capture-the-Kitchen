@@ -13,6 +13,8 @@ public class Unit : MonoBehaviour
     Transform headMutationParent;
     Transform bodyMutationParent;
 
+    public Hex hex;
+
     Hex tmpHex;
 
     
@@ -48,7 +50,7 @@ public class Unit : MonoBehaviour
 
     string unitName;
     [HideInInspector]
-    public int movePoints = 2;
+    public int movePoints;
     int currHP;
     int experiencePoints;
     int currLevel;
@@ -82,7 +84,7 @@ public class Unit : MonoBehaviour
         if (owner == null && GameManager.instance.currActivePlayer != null)
             owner = GameManager.instance.currActivePlayer;
         currHP = maxHealthPoints;
-        movePoints = maxMovePoints;
+        //movePoints = maxMovePoints;
 
         legsMutationParent = transform.FindDeepChild("Legs");
         bodyMutationParent = transform.FindDeepChild("Head");
@@ -243,12 +245,60 @@ public class Unit : MonoBehaviour
         }
     }
     #endregion
-    
+
+    #region Combat
+    public void AttackUnit(Unit target)
+    {
+        if (target == null) return;
+        movePoints = 0;
+        target.TakeDamage(damagePoints, this);
+    }
+
+    public void TakeDamage(int value, Unit from)
+    {
+        currHP = Mathf.Clamp(currHP - Mathf.Clamp(value - armourPoints, 0, value), 0, currHP);
+        Debug.Log(unitName + " suffered a " + Mathf.Clamp(value - armourPoints, 0, value) + "damage. Current HP = " + currHP);
+        if (currHP <= 0)
+        {
+            Debug.Log(unitName + " dead!");
+            DestroyUnit(from);
+        }
+    }
+
+    void DestroyUnit(Unit killer)
+    {
+        if (killer != null)
+        {
+            killer.GetExperiencePoints(experiencePointsBounty);
+            killer.GetFoodPoints(foodPointsBounty);
+        }
+        hex.DestroyUnit();
+    }
+
+    public void GetExperiencePoints(int count)
+    {
+        //TODO
+    }
+
+    public void GetFoodPoints(int count)
+    {
+        //TODO
+    }
+    #endregion
+
     #region Serialization
 
     public string Serialize()
     {
-        return unitName + "/" + movePoints + "/" + currHP + "/" + experiencePoints + "/" + currLevel + "/" + GameManager.instance.players.IndexOf(owner);
+        return unitName 
+            + "/" + movePoints 
+            + "/" + currHP 
+            + "/" + experiencePoints 
+            + "/" + currLevel 
+            + "/" + currLegsMutation 
+            + "/" + currHeadMutation 
+            + "/" + currBodyMutation 
+            + "/" + GameManager.instance.players.IndexOf(owner);
     }
     
     public void Deserialize(string[] vs)
@@ -258,7 +308,10 @@ public class Unit : MonoBehaviour
         currHP = int.Parse(vs[2]);
         experiencePoints = int.Parse(vs[3]);
         currLevel = int.Parse(vs[4]);
-        owner = GameManager.instance.players[int.Parse(vs[5])];
+        currLegsMutation = int.Parse(vs[5]);
+        currHeadMutation = int.Parse(vs[6]);
+        currBodyMutation = int.Parse(vs[7]);
+        owner = GameManager.instance.players[int.Parse(vs[8])];
     }
 
     #endregion

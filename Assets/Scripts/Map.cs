@@ -19,6 +19,7 @@ public class Map : MonoBehaviour {
     string[] cellJson;
     string saveFileName;
     string[] stringSeparators = new string[] { "[stop]" };
+    string[] defaultStartGameInput = new string[] { "Player1/100", "Player2/100"};
 
     #region Singleton
     public static Map instance;
@@ -32,7 +33,7 @@ public class Map : MonoBehaviour {
     public void PlayGame()
     {
         startPos = transform.position;
-        GameManager.instance.StartGame(2,0);
+        GameManager.instance.StartGame(2,0, defaultStartGameInput);
         InitializeNewMap();
     }
 
@@ -69,6 +70,11 @@ public class Map : MonoBehaviour {
     {
         outputTmp = "";
         outputTmp += GameManager.instance.players.Count + "|" + GameManager.instance.players.IndexOf(GameManager.instance.currActivePlayer) + "[stop]";
+        foreach (var item in GameManager.instance.players)
+        {
+            outputTmp += item.Serialize() + "|";
+        }
+        outputTmp += "[stop]";
         foreach (var item in hices)
         {
             outputTmp += item.Serialize() + "|";
@@ -88,11 +94,9 @@ public class Map : MonoBehaviour {
     {
         outputTmp = File.ReadAllText(GetLastSave());
         saveFileContent = outputTmp.Split(stringSeparators, System.StringSplitOptions.RemoveEmptyEntries);
-        //Debug.Log(saveFileContent[0]);
-        outputTmp = saveFileContent[1];
-        saveFileContent = saveFileContent[0].Split((char)124);
-        GameManager.instance.StartGame(int.Parse(saveFileContent[0]), int.Parse(saveFileContent[1]));
-        
+        GameManager.instance.StartGame(int.Parse(saveFileContent[0].Split((char)124)[0]), int.Parse(saveFileContent[0].Split((char)124)[1]), saveFileContent[1].Split((char)124));
+
+        outputTmp = saveFileContent[2];
         if (outputTmp != null && outputTmp != "")
         {
             foreach (var item in hices)

@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour {
     public List<Unit> units = new List<Unit>();
     Hex.UnitMoveResponse unitMoveResponse;
 
+    #region Serializable
+    public string playerName;
+    public int foodCount;
+    #endregion
+
     private void Start()
     {
         DebugUnitsInit();
@@ -98,9 +103,14 @@ public class PlayerController : MonoBehaviour {
                     break;
                 }
             }
-            if (theBestMoveForAttack.hex != null) unitMoveResponse = activeHex.MoveUnitTo(theBestMoveForAttack.hex);
+            if (theBestMoveForAttack.hex != null)
+            {
+                unitMoveResponse = activeHex.MoveUnitTo(theBestMoveForAttack.hex);
+                activeHex = theBestMoveForAttack.hex;
+            }
             else Debug.Log("Alredy in position");
             Debug.Log("Can attack");
+            activeHex.unit.AttackUnit(_hex.unit);
 
         }
         if (unitMoveResponse == Hex.UnitMoveResponse.CantMove)
@@ -110,6 +120,24 @@ public class PlayerController : MonoBehaviour {
         
         activeHex = null;
     }
+
+
+    #region Serialization
+
+    public string Serialize()
+    {
+        return playerName
+            + "/" + foodCount;
+    }
+
+    public void Deserialize(string[] vs)
+    {
+        playerName = vs[0];
+        foodCount = int.Parse(vs[1]);
+    }
+
+    #endregion
+
 
     #region Debug
     public GameObject debugUnitGO;
