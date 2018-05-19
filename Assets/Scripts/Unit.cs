@@ -8,10 +8,14 @@ public class Unit : MonoBehaviour
 {
     public MoveList avalibleHices = new MoveList();
     public MoveList avalibleEnemyHices = new MoveList();
+    
+    Transform legsMutationParent;
+    Transform headMutationParent;
+    Transform bodyMutationParent;
+
     Hex tmpHex;
 
-    #region Serializable
-
+    
     #region Unit Stats
     [Space(10)]
     [Header("Unit Stats")]
@@ -40,12 +44,17 @@ public class Unit : MonoBehaviour
     [Space(10)]
     #endregion
 
+    #region Serializable
+
     string unitName;
     [HideInInspector]
     public int movePoints = 2;
     int currHP;
     int experiencePoints;
     int currLevel;
+    int currLegsMutation;
+    int currBodyMutation;
+    int currHeadMutation;
 
     private PlayerController _owner;
     public PlayerController owner
@@ -74,6 +83,13 @@ public class Unit : MonoBehaviour
             owner = GameManager.instance.currActivePlayer;
         currHP = maxHealthPoints;
         movePoints = maxMovePoints;
+
+        legsMutationParent = transform.FindDeepChild("Legs");
+        bodyMutationParent = transform.FindDeepChild("Head");
+        headMutationParent = transform.FindDeepChild("Body");
+
+        UpdateMutationGraphics();
+
         if (unitName != null && unitName != "")
         {
             gameObject.name = unitName;
@@ -83,6 +99,50 @@ public class Unit : MonoBehaviour
             unitName = gameObject.name;
         }
     }
+    #endregion
+
+    #region Mutation Controls
+    void UpdateMutationGraphics()
+    {
+        foreach (Transform item in legsMutationParent)
+        {
+            item.gameObject.SetActive(false);
+            if (item.GetSiblingIndex() == currLegsMutation)
+            {
+                item.gameObject.SetActive(true);
+            }
+        }
+        
+        foreach (Transform item in bodyMutationParent)
+        {
+            item.gameObject.SetActive(false);
+            if (item.GetSiblingIndex() == currBodyMutation)
+            {
+                item.gameObject.SetActive(true);
+            }
+        }
+
+        foreach (Transform item in headMutationParent)
+        {
+            item.gameObject.SetActive(false);
+            if (item.GetSiblingIndex() == currHeadMutation)
+            {
+                item.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void DebugLvlUp()
+    {
+        if(currLevel != 1)
+        {
+            currLevel = 1;
+            currLegsMutation = 1;
+            currHeadMutation = 1;
+            currBodyMutation = 1;
+            UpdateMutationGraphics();
+        }
+    }    
     #endregion
 
     #region Navigation
@@ -188,16 +248,16 @@ public class Unit : MonoBehaviour
 
     public string Serialize()
     {
-        return unitName + "/" + movePoints + "/" + maxMovePoints + "/" + maxHealthPoints + "/" + currHP + "/" + GameManager.instance.players.IndexOf(owner);
+        return unitName + "/" + movePoints + "/" + currHP + "/" + experiencePoints + "/" + currLevel + "/" + GameManager.instance.players.IndexOf(owner);
     }
     
     public void Deserialize(string[] vs)
     {
         unitName = vs[0];
         movePoints = int.Parse(vs[1]);
-        maxMovePoints = int.Parse(vs[2]);
-        maxHealthPoints = int.Parse(vs[3]);
-        currHP = int.Parse(vs[4]);
+        currHP = int.Parse(vs[2]);
+        experiencePoints = int.Parse(vs[3]);
+        currLevel = int.Parse(vs[4]);
         owner = GameManager.instance.players[int.Parse(vs[5])];
     }
 

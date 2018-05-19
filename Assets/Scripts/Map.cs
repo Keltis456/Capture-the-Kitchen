@@ -120,9 +120,15 @@ public class Map : MonoBehaviour {
         System.DateTime maxFileCreationDateTime = System.DateTime.MinValue;
         foreach (string fileName in Directory.GetFiles(Application.persistentDataPath))
         {
-            if(File.GetCreationTime(fileName) > maxFileCreationDateTime) maxFileCreationDateTime = File.GetCreationTime(fileName);
-            maxFileName = fileName;
+            if (File.GetCreationTime(fileName) > maxFileCreationDateTime)
+            {
+                maxFileCreationDateTime = File.GetCreationTime(fileName);
+                maxFileName = fileName;
+            }
         }
+        Debug.Log(maxFileCreationDateTime);
+        Debug.Log(maxFileName);
+
         return maxFileName;
     }
 }

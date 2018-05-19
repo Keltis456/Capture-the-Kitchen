@@ -82,6 +82,13 @@ public class Hex : MonoBehaviour
         {
             GameManager.instance.currActivePlayer.CreateDebugUnitOnHex(this, GameManager.instance.currActivePlayer.debugUnitGO2);
         }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            if (unit != null)
+            {
+                unit.DebugLvlUp();
+            }
+        }
     }
 
     private void OnMouseDown()

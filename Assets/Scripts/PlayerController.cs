@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour {
         if (_hex.unit == null)
         {
             units.Add(_hex.SetUnit(Instantiate(debugUnitGO, _hex.transform).GetComponent<Unit>()));
+            _hex.unit.name = debugUnitGO.name;
         }
     }
 
@@ -142,6 +143,7 @@ public class PlayerController : MonoBehaviour {
         if (_hex.unit == null)
         {
             units.Add(_hex.SetUnit(Instantiate(_unitGO, _hex.transform).GetComponent<Unit>()));
+            _hex.unit.name = _unitGO.name;
         }
     }
     #endregion
