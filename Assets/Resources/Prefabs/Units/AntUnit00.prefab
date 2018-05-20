@@ -3960,16 +3960,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc5db2fc686857468cbeb9fbe9e77b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hex: {fileID: 0}
   maxHealthPoints: 8
   damagePoints: 8
   armourPoints: 2
   experiencePointsPerLevel: 10
+  maxLevel: 1
   maxMovePoints: 4
   foodPointsForReproduction: 1
   foodPointsConsumption: 2
   foodPointsBounty: 3
   experiencePointsBounty: 3
-  movePoints: 2
+  movePoints: 0
 --- !u!212 &212007239606575964
 SpriteRenderer:
   m_ObjectHideFlags: 1
