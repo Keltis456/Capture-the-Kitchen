@@ -13,29 +13,108 @@ public class Unit : MonoBehaviour
     Transform headMutationParent;
     Transform bodyMutationParent;
 
+    [HideInInspector]
     public Hex hex;
 
     Hex tmpHex;
-
     
+    public UnitRace unitRace;
+
     #region Unit Stats
     [Space(10)]
     [Header("Unit Stats")]
     [SerializeField]
-    int maxHealthPoints;
+    int _maxHealthPoints;
+    public int maxHealthPoints
+    {
+        get
+        {
+            return _maxHealthPoints;
+        }
+        private set
+        {
+            _maxHealthPoints = value;
+        }
+    }
     [SerializeField]
-    int damagePoints;
+    int _damagePoints;
+    public int damagePoints
+    {
+        get
+        {
+            return _damagePoints;
+        }
+        private set
+        {
+            _damagePoints = value;
+        }
+    }
     [SerializeField]
-    int armourPoints;
+    int _armourPoints;
+    public int armourPoints
+    {
+        get
+        {
+            return _armourPoints;
+        }
+        private set
+        {
+            _armourPoints = value;
+        }
+    }
     [SerializeField]
-    int experiencePointsPerLevel;
+    int _experiencePointsPerLevel;
+    public int experiencePointsPerLevel
+    {
+        get
+        {
+            return _experiencePointsPerLevel;
+        }
+        private set
+        {
+            _experiencePointsPerLevel = value;
+        }
+    }
     [SerializeField]
-    int maxLevel;
+    int _maxLevel;
+    public int maxLevel
+    {
+        get
+        {
+            return _maxLevel;
+        }
+        private set
+        {
+            _maxLevel = value;
+        }
+    }
     public int maxMovePoints;
     [SerializeField]
-    int foodPointsForReproduction;
+    int _foodPointsForReproduction;
+    public int foodPointsForReproduction
+    {
+        get
+        {
+            return _foodPointsForReproduction;
+        }
+        private set
+        {
+            _foodPointsForReproduction = value;
+        }
+    }
     [SerializeField]
-    int foodPointsConsumption;
+    int _foodPointsConsumption;
+    public int foodPointsConsumption
+    {
+        get
+        {
+            return _foodPointsConsumption;
+        }
+        private set
+        {
+            _foodPointsConsumption = value;
+        }
+    }
     [Space(10)]
     #endregion
 
@@ -53,12 +132,12 @@ public class Unit : MonoBehaviour
     string unitName;
     [HideInInspector]
     public int movePoints;
-    int currHP;
-    int experiencePoints;
-    int currLevel;
-    int currLegsMutation;
-    int currBodyMutation;
-    int currHeadMutation;
+    public int currHP { get; private set; }
+    public int experiencePoints { get; private set; }
+    public int currLevel { get; private set; }
+    public int currLegsMutation { get; private set; }
+    public int currBodyMutation { get; private set; }
+    public int currHeadMutation { get; private set; }
 
     private PlayerController _owner;
     public PlayerController owner
@@ -330,4 +409,10 @@ public class Unit : MonoBehaviour
 
     #endregion
 
+    public enum UnitRace
+    {
+        Ant,
+        Spider,
+        Cockroach
+    }
 }

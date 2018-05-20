@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour {
         {
             cellPrefabs.Add(item.name, item);
         }
+        UIManager.instance.ForcedStart();
+        UIManager.instance.UIUpdate();
     }
 
     public void StartGame(int playersCount, int currPlayer, string[] vs)
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour {
             }
             Debug.Log("CurrActivePlayer = " + players.IndexOf(currActivePlayer));
         }
+        UIManager.instance.UIUpdate();
     }
 
     public void EndOfPlayerTurn()

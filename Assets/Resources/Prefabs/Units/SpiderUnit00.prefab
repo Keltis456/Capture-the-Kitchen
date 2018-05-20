@@ -3563,14 +3563,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hex: {fileID: 0}
-  maxHealthPoints: 10
-  damagePoints: 12
-  armourPoints: 1
-  experiencePointsPerLevel: 8
-  maxLevel: 1
+  unitRace: 1
+  _maxHealthPoints: 10
+  _damagePoints: 12
+  _armourPoints: 2
+  _experiencePointsPerLevel: 8
+  _maxLevel: 1
   maxMovePoints: 3
-  foodPointsForReproduction: 3
-  foodPointsConsumption: 2
+  _foodPointsForReproduction: 3
+  _foodPointsConsumption: 2
   foodPointsBounty: 5
   experiencePointsBounty: 7
   movePoints: 0

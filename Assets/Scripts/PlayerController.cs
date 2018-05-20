@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     #region Serializable
     public string playerName;
     public int foodCount;
+    public Unit.UnitRace unitRace;
     #endregion
 
     private void Start()
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour {
         {
             return;
         }
+
+        UIManager.instance.UIUpdate();
 
         if (activeHex == _hex)
         {
@@ -46,6 +49,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         activeHex = _hex;
+
+        UIManager.instance.UIUpdate();
 
         if (activeHex != null)
         {
@@ -126,14 +131,48 @@ public class PlayerController : MonoBehaviour {
 
     public string Serialize()
     {
+        Debug.Log("unitRace : " + unitRace);
+        string race;
+        switch (unitRace)
+        {
+            case Unit.UnitRace.Ant:
+                race = "0";
+                break;
+            case Unit.UnitRace.Spider:
+                race = "1";
+                break;
+            case Unit.UnitRace.Cockroach:
+                race = "2";
+                break;
+            default:
+                race = "3";
+                break;
+        }
         return playerName
-            + "/" + foodCount;
+            + "/" + foodCount
+            + "/" + race;
     }
 
     public void Deserialize(string[] vs)
     {
         playerName = vs[0];
         foodCount = int.Parse(vs[1]);
+        switch (vs[2])
+        {
+            case "0":
+                unitRace = Unit.UnitRace.Ant;
+                break;
+            case "1":
+                unitRace = Unit.UnitRace.Spider;
+                break;
+            case "2":
+                unitRace = Unit.UnitRace.Cockroach;
+                break;
+            default:
+                unitRace = Unit.UnitRace.Cockroach;
+                break;
+        }
+        //unitRace = vs[2];
     }
 
     #endregion
@@ -145,15 +184,31 @@ public class PlayerController : MonoBehaviour {
 
     void DebugUnitsInit()
     {
+        /*
         if (debugUnitGO == null)
         {
             debugUnitGO = GameManager.instance.unitsPrefabs["Unit01"];
             Debug.Log(debugUnitGO);
-        }
+        }*/
         if (debugUnitGO2 == null)
         {
             debugUnitGO2 = GameManager.instance.unitsPrefabs["Unit02"];
             Debug.Log(debugUnitGO2);
+        }
+        switch (unitRace)
+        {
+            case Unit.UnitRace.Ant:
+                debugUnitGO = GameManager.instance.unitsPrefabs["AntUnit00"];
+                break;
+            case Unit.UnitRace.Spider:
+                debugUnitGO = GameManager.instance.unitsPrefabs["SpiderUnit00"];
+                break;
+            case Unit.UnitRace.Cockroach:
+                debugUnitGO = GameManager.instance.unitsPrefabs["RoachUnit00"];
+                break;
+            default:
+                debugUnitGO = GameManager.instance.unitsPrefabs["Unit01"];
+                break;
         }
     }
 

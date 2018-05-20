@@ -19,7 +19,7 @@ public class Map : MonoBehaviour {
     string[] cellJson;
     string saveFileName;
     string[] stringSeparators = new string[] { "[stop]" };
-    string[] defaultStartGameInput = new string[] { "Player1/100", "Player2/100"};
+    string[] defaultStartGameInput = new string[] { "Player1/100/Ant", "Player2/100/Ant"};
 
     #region Singleton
     public static Map instance;
@@ -30,9 +30,11 @@ public class Map : MonoBehaviour {
     }
     #endregion
     
-    public void PlayGame()
+    public void PlayGame(string player1Name, string player1Race, string player2Name, string player2Race)
     {
         startPos = transform.position;
+        defaultStartGameInput[0] = player1Name + "/100/" + player1Race;
+        defaultStartGameInput[1] = player2Name + "/100/" + player2Race;
         GameManager.instance.StartGame(2,0, defaultStartGameInput);
         InitializeNewMap();
     }
