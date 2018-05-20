@@ -29,7 +29,9 @@ public class Unit : MonoBehaviour
     int armourPoints;
     [SerializeField]
     int experiencePointsPerLevel;
-    public int maxMovePoints = 2;
+    [SerializeField]
+    int maxLevel;
+    public int maxMovePoints;
     [SerializeField]
     int foodPointsForReproduction;
     [SerializeField]
@@ -278,11 +280,23 @@ public class Unit : MonoBehaviour
     public void GetExperiencePoints(int count)
     {
         //TODO
+        if (count <= 0) return;
+        if (currLevel >= maxLevel) return;
+        if (experiencePointsPerLevel <= 0) return;
+        experiencePoints += count;
+        while (experiencePoints >= experiencePointsPerLevel)
+        {
+            experiencePoints -= experiencePointsPerLevel;
+            DebugLvlUp(); //TODO
+        }
+
     }
 
     public void GetFoodPoints(int count)
     {
-        //TODO
+        if (count <= 0) return;
+        if (owner == null) return;
+        owner.foodCount += count;
     }
     #endregion
 
